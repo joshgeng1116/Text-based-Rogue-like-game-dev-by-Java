@@ -43,5 +43,6 @@ public class Player extends Actor implements Soul {
 	@Override
 	public void transferSouls(Soul soulObject) {
 		//TODO: transfer Player's souls to another Soul's instance.
+
 	}
 }
