@@ -1,5 +1,6 @@
 package game;
 
+import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import game.interfaces.Resettable;
 
