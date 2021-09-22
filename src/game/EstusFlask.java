@@ -9,7 +9,7 @@ public class EstusFlask implements Resettable {
     private int maxCharges;
     private int currentCharges;
 
-    public EstusFlask(int maxCharges, int currentCharges) {
+    public EstusFlask() {
         this.maxCharges = maxCharges;
         this.currentCharges = currentCharges;
     }
