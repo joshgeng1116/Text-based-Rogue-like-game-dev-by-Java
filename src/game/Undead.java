@@ -23,6 +23,7 @@ public class Undead extends Actor {
 	 */
 	public Undead(String name) {
 		super(name, 'u', 50);
+		addCapability(Status.HOSTILE_TO_PLAYER);
 		behaviours.add(new WanderBehaviour());
 	}
 
