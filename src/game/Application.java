@@ -61,8 +61,8 @@ public class Application {
 			// FIXME: the Undead should be generated from the Cemetery
 			gameMap.at(32, 7).addActor(new Undead("Undead"));
 
-			gameMap.at(38, 11).addActor(new Bonfire("Bonfire", 'B'));
-			//gameMap.at(37, 11).addActor(new Vendor("FireKeeper", 'F'));
+			gameMap.at(38, 11).setGround(new Bonfire());
+			gameMap.at(37, 11).setGround(new Vendor());
 			world.run();
 
 	}
