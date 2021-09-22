@@ -26,8 +26,6 @@ public class Skeleton extends Actor {
     public Skeleton(String name) {
         super(name, 's', 100);
         behaviours.add(new WanderBehaviour());
-        Actor otherActor;
-        behaviours.add(new FollowBehaviour());
     }
 
     @Override
