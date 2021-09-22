@@ -1,12 +1,7 @@
 package game;
 
 
-import edu.monash.fit2099.engine.Action;
-import edu.monash.fit2099.engine.Actions;
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.Display;
-import edu.monash.fit2099.engine.DoNothingAction;
-import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.*;
 import game.enums.Status;
 import game.interfaces.Behaviour;
 
@@ -27,6 +22,7 @@ public class Undead extends Actor {
 	public Undead(String name) {
 		super(name, 'u', 50);
 		behaviours.add(new WanderBehaviour());
+		Actor otherActor;
 	}
 
 	/**
@@ -56,7 +52,20 @@ public class Undead extends Actor {
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		// loop through all behaviours
-		for(Behaviour Behaviour : behaviours) {
+		Location loc = map.locationOf(this);
+		for (int dx = -1; dx <= 1; dx++) {
+			for (int dy = -1; dy <= 1; dy++) {
+				int x = loc.x() + dx;
+				int y = loc.y() + dy;
+				if (map.getXRange().contains(x) && map.getYRange().contains(y)) {
+					Location cell = map.at(x, y);
+					if (cell.getActor() instanceof Player) {
+						return new AttackAction(cell.getActor(), "");
+					}
+				}
+			}
+		}
+		for (Behaviour Behaviour : behaviours) {
 			Action action = Behaviour.getAction(this, map);
 			if (action != null)
 				return action;
