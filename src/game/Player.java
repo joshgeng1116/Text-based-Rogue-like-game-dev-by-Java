@@ -1,21 +1,18 @@
 package game;
 
-import edu.monash.fit2099.engine.Action;
-import edu.monash.fit2099.engine.Actions;
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.Display;
-import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.Menu;
+import edu.monash.fit2099.engine.*;
 import game.enums.Abilities;
 import game.enums.Status;
+import game.interfaces.Resettable;
 import game.interfaces.Soul;
 
 /**
  * Class representing the Player.
  */
-public class Player extends Actor implements Soul {
+public class Player extends Actor implements Soul, Resettable {
 
 	private final Menu menu = new Menu();
+	private int souls = 0;
 
 	/**
 	 * Constructor.
@@ -40,10 +37,65 @@ public class Player extends Actor implements Soul {
 		return menu.showMenu(this, actions, display);
 	}
 
+	public int getMaxHitPoints() {
+		return maxHitPoints;
+	}
+
+	public int getHitPoints() {
+		return hitPoints;
+	}
+
+	public int getSouls() {
+		return souls;
+	}
+
+	@Override
+	public void addItemToInventory(Item item) {
+		if (item instanceof GameWeaponItem) {
+			Weapon w = getWeapon();
+			if(w instanceof Item) {
+				removeItemFromInventory((Item) getWeapon());
+			}
+		}
+		super.addItemToInventory(item);
+	}
+
 	@Override
 	public void transferSouls(Soul soulObject) {
-		//TODO: transfer Player's souls to another Soul's instance.
-	//to be done by Yee
+		//FINISHED: transfer Player's souls to another Soul's instance.
+		soulObject.addSouls(souls);
+		souls = 0;
+	}
 
+	@Override
+	public boolean addSouls(int souls) {
+		if (souls >= 0) {
+			this.souls += souls;
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean subtractSouls(int souls) {
+		if (souls >= 0) {
+			if (this.souls >= souls) {
+				this.souls -= souls;
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public void resetInstance() {
+		for (Item item : this.getInventory()) {
+			removeItemFromInventory(item);
+		}
+	}
+
+	@Override
+	public boolean isExist() {
+		return true;
 	}
 }

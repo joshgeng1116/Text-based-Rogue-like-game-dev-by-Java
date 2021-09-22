@@ -2,22 +2,16 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
-public class Bonfire extends Actor {
+public class Bonfire extends Ground {
     //need to be implemented by Yee
-
-    /**
-     * Constructor.
-     *
-     * @param name        the name of the Actor
-     * @param displayChar the character that will represent the Actor in the display
-     */
-    public Bonfire(String name, char displayChar) {
-        super(name, displayChar, 0);
-
+    public Bonfire() {
+        super('B');
     }
 
     @Override
-    public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-        return null;
+    public Actions allowableActions(Actor actor, Location location, String direction) {
+        Actions actions =new Actions();
+        actions.add(new BonfireResetAction());
+        return actions;
     }
 }
