@@ -10,7 +10,7 @@ import edu.monash.fit2099.engine.GameMap;
 public class VendorBuyAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
-        return null;
+        return "Unkindled does nothing";
     }
 
     @Override
@@ -23,4 +23,5 @@ public class VendorBuyAction extends Action {
     public int soulsNum(Player player){
         return player.getSouls();
     }
+
 }
