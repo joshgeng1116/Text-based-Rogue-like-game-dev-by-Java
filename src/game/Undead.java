@@ -13,6 +13,8 @@ import java.util.ArrayList;
 public class Undead extends Actor {
 	// Will need to change this to a collection if Undeads gets additional Behaviours.
 	private ArrayList<Behaviour> behaviours = new ArrayList<>();
+	private Behaviour followPlayer = null;
+	private int souls = 50;
 
 	/** 
 	 * Constructor.
@@ -22,7 +24,6 @@ public class Undead extends Actor {
 	public Undead(String name) {
 		super(name, 'u', 50);
 		behaviours.add(new WanderBehaviour());
-		Actor otherActor;
 	}
 
 	/**
@@ -53,23 +54,29 @@ public class Undead extends Actor {
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		// loop through all behaviours
 		Location loc = map.locationOf(this);
-		for (int dx = -1; dx <= 1; dx++) {
-			for (int dy = -1; dy <= 1; dy++) {
-				int x = loc.x() + dx;
-				int y = loc.y() + dy;
-				if (map.getXRange().contains(x) && map.getYRange().contains(y)) {
-					Location cell = map.at(x, y);
-					if (cell.getActor() instanceof Player) {
-						return new AttackAction(cell.getActor(), "");
+		int[] dxlst = new int[]{-1, 1, 0, 0};
+		int[] dylst = new int[]{0, 0, -1, 1};
+		for (int i = 0; i < 4; i++) {
+			int dx = dxlst[i];
+			int dy = dylst[i];
+			int x = loc.x() + dx;
+			int y = loc.y() + dy;
+			if (map.getXRange().contains(x) && map.getYRange().contains(y)) {
+				Location cell = map.at(x, y);
+				if (cell.getActor() instanceof Player) {
+					if (followPlayer == null) {
+						followPlayer = new FollowBehaviour(cell.getActor());
 					}
+					return new AttackAction(cell.getActor(), "");
 				}
 			}
 		}
-		for (Behaviour Behaviour : behaviours) {
-			Action action = Behaviour.getAction(this, map);
-			if (action != null)
-				return action;
+
+		if (followPlayer != null) {
+			Action followAction = followPlayer.getAction(this, map);
+			if (followAction != null) return followAction;
 		}
+
 		return new DoNothingAction();
 	}
 
