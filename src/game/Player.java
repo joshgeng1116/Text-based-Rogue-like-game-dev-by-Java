@@ -59,7 +59,7 @@ public class Player extends Actor implements Soul, Resettable {
 	 * resets the estus flask count using EstusFlask class
 	 */
 	public void resetEstusFlask(){
-		 estusFlask.resetInstance(); /// unfinished player not linked to estusflask class yet need to instantiate
+		 estusFlask.resetInstance();
 	}
 
 	/**

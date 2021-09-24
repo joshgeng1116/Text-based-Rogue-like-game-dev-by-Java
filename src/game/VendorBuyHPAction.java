@@ -21,7 +21,7 @@ public class VendorBuyHPAction extends VendorBuyAction{
         if (player.getSouls() > costHP){
             player.subtractSouls(costHP);
             player.increaseMaxHp(increaseHP);
-            return "Max HP brought successfully, Max HP increased by "+increaseHP;} //need a reference to the Broadsword
+            return "Max HP brought successfully, Max HP increased by "+increaseHP;}
         else{
             return "Not enough Souls to purchase increase Max HP";
         }
