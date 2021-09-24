@@ -21,6 +21,13 @@ public class Bonfire extends Ground {
         super('B');
     }
 
+    /**
+     * Contains all the actions that Bonfire can execute
+     * @param actor the Actor acting
+     * @param location the current Location
+     * @param direction the direction of the Ground from the Actor
+     * @return array of actions that Bonfire can perform
+     */
     @Override
     public Actions allowableActions(Actor actor, Location location, String direction) {
         Actions actions =new Actions();

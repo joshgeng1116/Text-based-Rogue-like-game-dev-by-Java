@@ -13,6 +13,7 @@ public class Player extends Actor implements Soul, Resettable {
 
 	private final Menu menu = new Menu();
 	private int souls = 0;
+	private EstusFlask estusFlask;
 
 	/**
 	 * Constructor.
@@ -25,6 +26,7 @@ public class Player extends Actor implements Soul, Resettable {
 		super(name, displayChar, hitPoints);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addCapability(Abilities.REST);
+		this.estusFlask = new EstusFlask();   // Linking Estus Flask and player
 	}
 
 	@Override
@@ -37,20 +39,27 @@ public class Player extends Actor implements Soul, Resettable {
 		return menu.showMenu(this, actions, display);
 	}
 
+	/**
+	 * gets current Max Hit points
+	 * @return integer containing current Max hit points
+	 */
 	public int getMaxHitPoints() {
 		return maxHitPoints;
 	}
 
+	/**
+	 * gets current hit points count
+	 * @return integer containing current count of hit points
+	 */
 	public int getHitPoints() {
 		return hitPoints;
 	}
 
 	/**
-	 *
-	 * @return
+	 * resets the estus flask count using EstusFlask class
 	 */
-	public int getEstusFlask(){
-		return EstusFlask(); /// unfinished player not linked to estusflask class yet need to instantiate
+	public void resetEstusFlask(){
+		 estusFlask.resetInstance(); /// unfinished player not linked to estusflask class yet need to instantiate
 	}
 
 	/**
