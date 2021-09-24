@@ -45,6 +45,18 @@ public class Player extends Actor implements Soul, Resettable {
 		return hitPoints;
 	}
 
+	/**
+	 *
+	 * @return
+	 */
+	public int getEstusFlask(){
+		return EstusFlask(); /// unfinished player not linked to estusflask class yet need to instantiate
+	}
+
+	/**
+	 * gets the number of souls of player at that current time
+	 * @return int number of souls
+	 */
 	public int getSouls() {
 		return souls;
 	}
@@ -66,7 +78,11 @@ public class Player extends Actor implements Soul, Resettable {
 		soulObject.addSouls(souls);
 		souls = 0;
 	}
-
+	/**
+	 * adds souls number of Souls from player
+	 * @param souls number souls to be added
+	 * @return true if it is successful in adding souls, else false
+	 */
 	@Override
 	public boolean addSouls(int souls) {
 		if (souls >= 0) {
@@ -76,6 +92,11 @@ public class Player extends Actor implements Soul, Resettable {
 		return false;
 	}
 
+	/**
+	 * deducts souls number of Souls from player
+	 * @param souls number souls to be deducted
+	 * @return true if it is successful in deducted souls, else false
+	 */
 	@Override
 	public boolean subtractSouls(int souls) {
 		if (souls >= 0) {

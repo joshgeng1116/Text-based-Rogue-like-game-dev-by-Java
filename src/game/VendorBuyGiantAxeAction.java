@@ -6,8 +6,12 @@ import edu.monash.fit2099.engine.GameMap;
 public class VendorBuyGiantAxeAction extends VendorBuyAction{
     @Override
     public String execute(Actor actor, GameMap map) {
-        return super.execute(actor, map);
-    }
+
+            return SwapWeaponAction(GiantAxe);}
+
+
+
+
 
     @Override
     public String menuDescription(Actor actor) {

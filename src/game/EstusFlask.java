@@ -20,6 +20,10 @@ public class EstusFlask implements Resettable {
         }
     }
 
+    public int getCurrentCharges() {
+        return currentCharges;
+    }
+
     @Override
     public void resetInstance() {
         currentCharges = maxCharges;

@@ -20,7 +20,8 @@ public class VendorBuyAction extends Action {
     /**
      * method to return the number of souls that the player currently has
      */
-    public int soulsNum(Player player){
+    public int soulsNum(Actor actor){
+        Player player = (Player) actor;
         return player.getSouls();
     }
 
