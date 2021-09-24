@@ -2,7 +2,9 @@ package game;
 
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
-
+/**
+ * class that executes when buying increase Max HP is selected
+ */
 public class VendorBuyHPAction extends VendorBuyAction{
     private final int costHP = 200;
     private final int increaseHP = 25;

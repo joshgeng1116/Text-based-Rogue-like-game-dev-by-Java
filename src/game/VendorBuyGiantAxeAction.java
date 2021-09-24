@@ -3,6 +3,9 @@ package game;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 
+/**
+ * class that executes when buy Giant Axe is selected
+ */
 public class VendorBuyGiantAxeAction extends VendorBuyAction{
     /**
      * Method that executes when unkindled wants to buy and swap weapon with Giant Axe

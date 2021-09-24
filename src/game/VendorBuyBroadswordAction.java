@@ -2,7 +2,9 @@ package game;
 
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
-
+/**
+ * class that executes when buy Broadsword is selected
+ */
 public class VendorBuyBroadswordAction extends VendorBuyAction{
     /**
      * Method that executes when unkindled wants to buy and swap weapon with Broadsword
@@ -18,7 +20,7 @@ public class VendorBuyBroadswordAction extends VendorBuyAction{
             return "Broadsword brought successfully, "+SwapWeaponAction(Broadsword);} //need a reference to the Broadsword
         else{
             return "Not enough Souls to purchase Broadsword";
-        }
+        }}
 
     /**
      * menu description for buying Broadsword

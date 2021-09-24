@@ -3,7 +3,9 @@ package game;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
-
+/**
+ * class that executes when rest at FireLink shrine Bonfire is selected
+ */
 public class BonfireResetAction extends Action {
     /**
      * resets the player's health/hit points to the maximum
