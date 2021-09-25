@@ -8,7 +8,7 @@ import java.util.List;
 public class StormRuler extends GameWeaponItem{
 
     private int chargeTimes;
-    private int maxChargeTimes = 4;
+    private int maxChargeTimes = 3;
 
     /**
      * Constructor of StormRuler.
@@ -19,23 +19,27 @@ public class StormRuler extends GameWeaponItem{
 
     @Override
     public List<Action> getAllowableActions() {
-
         List<Action> actions = new ArrayList<>();
-        if (chargeTimes == 0) {
-            actions.addAll(super.getAllowableActions());
-            actions.add(new StormRulerChargeAction(this));
-        } else if (chargeTimes < maxChargeTimes) {
-            actions.add(new StormRulerChargeAction(this));
-        } else {
-            actions.add(new StormRulerChargeAction(this));
-        }
+        actions.add(new StormRulerChargeAction(this));
         return actions;
+    }
+
+
+    public boolean isFullCharged() {
+        return chargeTimes==maxChargeTimes;
     }
 
     public void charge() {
         chargeTimes++;
         if (chargeTimes > maxChargeTimes) {
             chargeTimes = 0;
+        }
+        if (chargeTimes < maxChargeTimes) {
+            damage = 70;
+            hitRate = 60;
+        } else {
+            damage = 140;
+            hitRate = 100;
         }
     }
 

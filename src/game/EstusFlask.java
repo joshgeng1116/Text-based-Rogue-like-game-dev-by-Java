@@ -3,49 +3,51 @@ package game;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.Item;
 import game.interfaces.Resettable;
 
-public class EstusFlask extends Action implements Resettable {
+public class EstusFlask extends Item implements Resettable {
 
-    private final int maxCharges = 3;
-    private int currentCharges;
+    private int total;
+    private int current;
 
+    /***
+     * Constructor of EstusFlask.
+     */
     public EstusFlask() {
-        this.currentCharges = maxCharges;
+        super("Estus Flask", 'F', false);
+        allowableActions.add(new DrinkItemAction(this));
+        reset();
     }
 
+    public int getTotal() {
+        return total;
+    }
 
-    public int getCurrentCharges() {
-        return currentCharges;
+    public int getCurrent() {
+        return current;
+    }
+
+    public void reset() {
+        total = 3;
+        current = 3;
+    }
+
+    public boolean drink() {
+        if (current > 0) {
+            current--;
+            return true;
+        }
+        return false;
     }
 
     @Override
     public void resetInstance() {
-        currentCharges = maxCharges;
+        current = total;
     }
 
     @Override
     public boolean isExist() {
         return false;
-    }
-
-
-    @Override
-    public String execute(Actor actor, GameMap map) {
-        if(currentCharges > 0  ){
-            actor.heal(40);
-            currentCharges--;
-        }
-        return menuDescription(actor);
-    }
-
-    @Override
-    public String menuDescription(Actor actor) {
-        return actor + "Drinks Estus Flask" + "(" + currentCharges + ")";
-    }
-
-    @Override
-    public String hotkey() {
-        return "a";
     }
 }
