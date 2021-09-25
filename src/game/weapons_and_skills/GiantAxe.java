@@ -16,6 +16,10 @@ public class GiantAxe extends GameWeaponItem {
         super("Giant Axe", 'g', 50, "hits", 80);
     }
 
+    /**
+     * when an actor hold Giant Axe, add SpinAttackAction to allowableAction
+     * @return action
+     */
     @Override
     public List<Action> getAllowableActions() {
         List<Action> result = new ArrayList<>();
@@ -23,6 +27,10 @@ public class GiantAxe extends GameWeaponItem {
         return result;
     }
 
+    /**
+     *
+     * @return cost to buy it in Vendor
+     */
     public static int cost(){
         return 1000;
     }

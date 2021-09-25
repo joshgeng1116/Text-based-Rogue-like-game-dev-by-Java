@@ -18,6 +18,10 @@ public class StormRuler extends GameWeaponItem {
         super("StormRuler", '7', 70, "hits", 60);
     }
 
+    /**
+     *add charging action to actions list
+     * @return actions
+     */
     @Override
     public List<Action> getAllowableActions() {
         List<Action> actions = new ArrayList<>();
@@ -26,18 +30,23 @@ public class StormRuler extends GameWeaponItem {
     }
 
 
+    /**
+     * check if the storm ruler fully charge or not
+     * @return true or false storm ruler fully charged or not
+     */
     public boolean isFullCharged() {
         return chargeTimes==maxChargeTimes;
     }
 
+    /**
+     *charge the storm ruler
+     * this method also will be called when storm ruler skill execute and change the damage and hit rate
+     */
     public void charge() {
-        chargeTimes++;
-        if (chargeTimes > maxChargeTimes) {
-            chargeTimes = 0;
-        }
         if (chargeTimes < maxChargeTimes) {
             damage = 70;
             hitRate = 60;
+            chargeTimes++;
         } else {
             damage = 140;
             hitRate = 100;

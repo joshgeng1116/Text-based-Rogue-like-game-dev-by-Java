@@ -6,7 +6,17 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Location;
 import game.Dirt;
 
+/**
+ * This action will be returned if hp of lord of cinder is below 50% and it never executed
+ */
 public class BurnGroundAction extends Action {
+
+    /**
+     * burn 9 locations for 4 turns
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * @return
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
         Location loc = map.locationOf(actor);
