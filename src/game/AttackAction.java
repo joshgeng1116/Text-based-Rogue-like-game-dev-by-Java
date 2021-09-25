@@ -63,7 +63,7 @@ public class AttackAction extends Action {
 			for (Action drop : dropActions)
 				drop.execute(target, map);
 
-			//transfer soul to player
+			//transfer soul from target to actor
 			if (actor instanceof Soul && target instanceof Soul) {
 				Soul soul1 = (Soul) actor;
 				Soul soul2 = (Soul) target;

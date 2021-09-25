@@ -9,11 +9,7 @@ import game.interfaces.Soul;
 import game.weapons_and_skills.BurnGroundAction;
 import game.weapons_and_skills.Machete;
 
-/**
- * The boss of Design o' Souls
- * FIXME: This boss is Boring. It does nothing. You need to implement features here.
- * TODO: Could it be an abstract class? If so, why and how?
- */
+
 public class LordOfCinder extends Actor implements Soul {
     private Behaviour followPlayer = null;
     private int souls = 5000;
@@ -29,6 +25,10 @@ public class LordOfCinder extends Actor implements Soul {
 
     }
 
+    /**
+     * check if the heal of lord of cinder below 50%
+     * @return
+     */
     public boolean isEmberForm() {
         return this.hitPoints * 1.0 / this.maxHitPoints < 0.5;
     }
@@ -75,6 +75,10 @@ public class LordOfCinder extends Actor implements Soul {
         return new DoNothingAction();
     }
 
+    /**
+     *
+     * @param points number of hitpoints to deduct.
+     */
     @Override
     public void hurt(int points) {
         super.hurt(points);
@@ -83,6 +87,13 @@ public class LordOfCinder extends Actor implements Soul {
         }
     }
 
+    /**
+     *make it can be attacked by player
+     * @param otherActor the Actor that might be performing attack
+     * @param direction  String representing the direction of the other Actor
+     * @param map        current GameMap
+     * @return
+     */
     @Override
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
         Actions actions = new Actions();

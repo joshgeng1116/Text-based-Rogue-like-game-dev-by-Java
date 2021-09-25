@@ -13,6 +13,10 @@ public class Cemetery extends Ground {
         super('c');
     }
 
+    /**
+     * 25% chance to create undead each turn
+     * @param location The location of the Ground
+     */
     @Override
     public void tick(Location location) {
         if (location.getActor() == null) {

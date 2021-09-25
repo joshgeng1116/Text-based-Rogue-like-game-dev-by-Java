@@ -49,13 +49,17 @@ public class Undead extends Actor implements Soul{
 	}
 
 	/**
-	 * Figure out what to do next.
-	 * FIXME: An Undead wanders around at random and it cannot attack anyone. Also, figure out how to spawn this creature.
-	 * @see edu.monash.fit2099.engine.Actor#playTurn(Actions, Action, GameMap, Display)
+	 * go through all the actions behaviours in play turn
+	 * @param actions    collection of possible Actions for this Actor
+	 * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
+	 * @param map        the map containing the Actor
+	 * @param display    the I/O object to which messages may be written
+	 * @return action
 	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-		// loop through all behaviours
+
+		//check 9 locations near actor, contains where it is standing
 		Location loc = map.locationOf(this);
 		for (int dx = -1; dx <= 1; dx++) {
 			for (int dy = -1; dy <= 1; dy++) {
@@ -63,6 +67,8 @@ public class Undead extends Actor implements Soul{
 				int y = loc.y() + dy;
 				if (map.getXRange().contains(x) && map.getYRange().contains(y)) {
 					Location cell = map.at(x, y);
+
+					//check if the player near Undead, check the followPlayer, if is null make it follow the player then attack player
 					if (cell.getActor() instanceof Player) {
 						if (followPlayer == null) {
 							followPlayer = new FollowBehaviour(cell.getActor());
@@ -72,12 +78,14 @@ public class Undead extends Actor implements Soul{
 				}
 			}
 		}
+
+		//if there's no player in 9 locations near actor, check if there's a followPlayer behaviour, if yes, follow the player
 		if (followPlayer != null) {
 			Action followAction = followPlayer.getAction(this, map);
 			if (followAction != null) return followAction;
 		}
 
-
+		//if there's no player in 9 locations near actor and no followPlayer behaviour, runs other behaviours(wander)
 		for (Behaviour Behaviour : behaviours) {
 			Action action = Behaviour.getAction(this, map);
 			if (action != null)
@@ -86,6 +94,10 @@ public class Undead extends Actor implements Soul{
 		return new DoNothingAction();
 	}
 
+	/**
+	 * a method to make hurt to actor, and with 10% chance dead instantly
+	 * @param points number of hitpoints to deduct.
+	 */
 	@Override
 	public void hurt(int points) {
 		Random random = new Random();
@@ -96,11 +108,20 @@ public class Undead extends Actor implements Soul{
 		}
 	}
 
+
+	/**
+	 *
+	 * @param soulObject a target souls.
+	 */
 	@Override
 	public void transferSouls(Soul soulObject) {
 		soulObject.addSouls(50);
 	}
 
+	/**
+	 *
+	 * @return
+	 */
 	@Override
 	public String toString() {
 		return String.format("%s(%d/%d)", name, hitPoints, maxHitPoints);

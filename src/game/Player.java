@@ -69,6 +69,7 @@ public class Player extends Actor implements Soul, Resettable {
 				souls
 		);
 
+
 		//check the weapon hold by player, if it's stormruler, add skill of stormruler to player's action
 		if (getWeapon() instanceof StormRuler) {
 			StormRuler stormRuler = (StormRuler) getWeapon();

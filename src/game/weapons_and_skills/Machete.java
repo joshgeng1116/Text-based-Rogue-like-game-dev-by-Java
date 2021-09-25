@@ -14,6 +14,10 @@ public class Machete extends GameWeaponItem {
         this.lordOfCinder = lordOfCinder;
     }
 
+    /**
+     * if lord of cinder's heal is below 50%, increase the chanceToHit
+     * @return chanceToHit
+     */
     @Override
     public int chanceToHit() {
         if (lordOfCinder.isEmberForm()) {

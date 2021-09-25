@@ -28,6 +28,8 @@ public class Skeleton extends Actor implements Soul{
     public Skeleton(String name) {
         super(name, 's', 100);
         Random random = new Random();
+
+        //when a skeleton created, randomly got a weapon(broadsword or giant axe)
         if (random.nextInt(2) == 0) {
             addItemToInventory(new Broadsword());
         } else {
@@ -37,6 +39,10 @@ public class Skeleton extends Actor implements Soul{
         behaviours.add(new WanderBehaviour());
     }
 
+    /**
+     * a method will be called in attack action if a skeleton been killed, it has 50% chance revival
+     * @return true or false, it revival or not
+     */
     public boolean revival() {
         if (firstTime) {
             firstTime = false;
@@ -72,10 +78,12 @@ public class Skeleton extends Actor implements Soul{
     }
 
     /**
-     * Figure out what to do next.
-     * FINISHED: An Undead wanders around at random and it cannot attack anyone. Also, figure out how to spawn this creature.
-     *
-     * @see edu.monash.fit2099.engine.Actor#playTurn(Actions, Action, GameMap, Display)
+     * playTurn for skeleton is same as undead
+     * @param actions    collection of possible Actions for this Actor
+     * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
+     * @param map        the map containing the Actor
+     * @param display    the I/O object to which messages may be written
+     * @return action
      */
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
@@ -109,11 +117,19 @@ public class Skeleton extends Actor implements Soul{
         return new DoNothingAction();
     }
 
+    /**
+     *
+     * @param soulObject a target souls.
+     */
     @Override
     public void transferSouls(Soul soulObject) {
         soulObject.addSouls(250);
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return String.format("%s(%d/%d)", name, hitPoints, maxHitPoints);
