@@ -35,6 +35,13 @@ public class Player extends Actor implements Soul, Resettable {
 		ResetManager.getInstance().appendResetInstance(this);
 	}
 
+	/**
+	 * A method to add actions to the player when near enemies
+	 * @param otherActor the Actor that might be performing attack
+	 * @param direction  String representing the direction of the other Actor
+	 * @param map        current GameMap
+	 * @return returns an arraylist of actions
+	 */
 	@Override
 	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
 		Actions actions = new Actions();
@@ -89,18 +96,34 @@ public class Player extends Actor implements Soul, Resettable {
 		return menu.showMenu(this, actions, display);
 	}
 
+	/**
+	 * Accessor for players max HP
+	 * @return maximum player hitpoints
+	 */
 	public int getMaxHitPoints() {
 		return maxHitPoints;
 	}
 
+	/**
+	 * Accessor for players current HP
+	 * @return current player hitpoints
+	 */
 	public int getHitPoints() {
 		return hitPoints;
 	}
 
+	/**
+	 * Accessor for the number of souls a player has
+	 * @return number of souls
+	 */
 	public int getSouls() {
 		return souls;
 	}
 
+	/**
+	 * Adds weapons to players inventory
+	 * @param item The Item to add.
+	 */
 	@Override
 	public void addItemToInventory(Item item) {
 		if (item instanceof GameWeaponItem) {
@@ -112,13 +135,21 @@ public class Player extends Actor implements Soul, Resettable {
 		super.addItemToInventory(item);
 	}
 
+	/**
+	 * transfer Player's souls to another Soul's instance.
+	 * @param soulObject a target souls.
+	 */
 	@Override
 	public void transferSouls(Soul soulObject) {
-		//FINISHED: transfer Player's souls to another Soul's instance.
 		soulObject.addSouls(souls);
 		souls = 0;
 	}
 
+	/**
+	 * increments the number of souls the player has
+	 * @param souls number of souls to be incremented.
+	 * @return
+	 */
 	@Override
 	public boolean addSouls(int souls) {
 		if (souls >= 0) {
@@ -127,7 +158,11 @@ public class Player extends Actor implements Soul, Resettable {
 		}
 		return false;
 	}
-
+	/**
+	 * decrements the number of souls the player has
+	 * @param souls number of souls to be decremented.
+	 * @return
+	 */
 	@Override
 	public boolean subtractSouls(int souls) {
 		if (souls >= 0) {
@@ -139,6 +174,9 @@ public class Player extends Actor implements Soul, Resettable {
 		return false;
 	}
 
+	/**
+	 * Resets the player instances HP , souls and inventory
+	 */
 	@Override
 	public void resetInstance() {
 		souls = 0;
@@ -151,6 +189,11 @@ public class Player extends Actor implements Soul, Resettable {
 		}
 	}
 
+	/**
+	 * A  method to clean up the list of instances in the ResetManager class
+	 * @return the existence of the player in the game.
+	 * for example, true to keep it permanent, or false if instance needs to be removed from the reset list.
+	 */
 	@Override
 	public boolean isExist() {
 		return true;
