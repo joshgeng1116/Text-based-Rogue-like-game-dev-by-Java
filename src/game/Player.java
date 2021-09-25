@@ -71,6 +71,7 @@ public class Player extends Actor implements Soul, Resettable {
 			resetInstance();
 			map.removeActor(player);
 			map.at(38, 12).addActor(player);
+			System.out.println("YOU DIED!");
 			return new DoNothingAction();
 		}
 		if (lastAction.getNextAction() != null)
