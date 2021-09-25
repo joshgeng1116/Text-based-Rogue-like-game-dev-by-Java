@@ -1,8 +1,10 @@
-package game;
+package game.weapons_and_skills;
+
+import game.GameWeaponItem;
 
 import java.util.Random;
 
-public class Broadsword extends GameWeaponItem{
+public class Broadsword extends GameWeaponItem {
 
     Random random = new Random();
 

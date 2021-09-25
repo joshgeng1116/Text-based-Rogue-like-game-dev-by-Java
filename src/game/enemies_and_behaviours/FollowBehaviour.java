@@ -1,4 +1,4 @@
-package game;
+package game.enemies_and_behaviours;
 
 import edu.monash.fit2099.engine.*;
 import game.interfaces.Behaviour;

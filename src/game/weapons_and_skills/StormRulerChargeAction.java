@@ -1,8 +1,9 @@
-package game;
+package game.weapons_and_skills;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
+import game.weapons_and_skills.StormRuler;
 
 public class StormRulerChargeAction extends Action {
     private StormRuler stormRuler;

@@ -1,12 +1,12 @@
-package game;
+package game.weapons_and_skills;
 
 import edu.monash.fit2099.engine.Action;
-import game.interfaces.Soul;
+import game.GameWeaponItem;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class GiantAxe extends GameWeaponItem{
+public class GiantAxe extends GameWeaponItem {
 
     /**
      * Constructor.

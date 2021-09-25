@@ -1,11 +1,9 @@
-package game;
+package game.weapons_and_skills;
 
-import edu.monash.fit2099.engine.Action;
-import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
-
-import java.util.List;
+import game.AttackAction;
+import game.weapons_and_skills.StormRuler;
 
 public class StormRulerStunAction extends AttackAction {
     public StormRulerStunAction(Actor target, String direction) {

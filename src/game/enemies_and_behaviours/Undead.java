@@ -1,7 +1,9 @@
-package game;
+package game.enemies_and_behaviours;
 
 
 import edu.monash.fit2099.engine.*;
+import game.AttackAction;
+import game.Player;
 import game.enums.Status;
 import game.interfaces.Behaviour;
 import game.interfaces.Soul;

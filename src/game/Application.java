@@ -1,6 +1,9 @@
 package game;
 
 import edu.monash.fit2099.engine.*;
+import game.enemies_and_behaviours.LordOfCinder;
+import game.enemies_and_behaviours.Skeleton;
+import game.weapons_and_skills.StormRuler;
 
 import java.util.Arrays;
 import java.util.List;

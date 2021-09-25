@@ -1,11 +1,12 @@
-package game;
+package game.weapons_and_skills;
 
 import edu.monash.fit2099.engine.Action;
+import game.GameWeaponItem;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class StormRuler extends GameWeaponItem{
+public class StormRuler extends GameWeaponItem {
 
     private int chargeTimes;
     private int maxChargeTimes = 3;

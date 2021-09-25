@@ -1,9 +1,10 @@
-package game;
+package game.weapons_and_skills;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Location;
+import game.Dirt;
 
 public class BurnGroundAction extends Action {
     @Override
