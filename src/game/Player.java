@@ -10,10 +10,11 @@ import game.interfaces.Soul;
  * Class representing the Player.
  */
 public class Player extends Actor implements Soul, Resettable {
-
 	private final Menu menu = new Menu();
+
 	private int souls = 0;
-	private EstusFlask estusFlask;
+
+	private Location lastLocation;
 
 	/**
 	 * Constructor.
@@ -26,54 +27,72 @@ public class Player extends Actor implements Soul, Resettable {
 		super(name, displayChar, hitPoints);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addCapability(Abilities.REST);
-		this.estusFlask = new EstusFlask();   // Linking Estus Flask and player
+		this.addItemToInventory(new Broadsword());
+		this.addItemToInventory(new EstusFlask());
+		ResetManager.getInstance().appendResetInstance(this);
+	}
+
+	@Override
+	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
+		Actions actions = new Actions();
+		if (otherActor.hasCapability(Status.HOSTILE_TO_PLAYER)) {
+			actions.add(new AttackAction(this, direction));
+		}
+		return actions;
 	}
 
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-
-		if(isConscious()){
-			// Handle multi-turn Actions
-			if (lastAction.getNextAction() != null)
-				return lastAction.getNextAction();
-
+		// Handle multi-turn Actions
+		if (!this.isConscious()) {
+			Player player = this;
+			DyingSpot dyingSpot = new DyingSpot(player.getSouls());
+			if (lastAction != null) {
+				lastLocation.addItem(dyingSpot);
+			}
+			ResetManager.getInstance().run();
+			map.removeActor(player);
+			map.at(38, 12).addActor(player);
+			return new DoNothingAction();
 		}
-		else {
-			System.out.println("YOU DIED!");
-			resetInstance();
+		if (lastAction.getNextAction() != null)
+			return lastAction.getNextAction();
+
+		String weaponString = getWeapon().toString();
+		System.out.printf("Unkindled (%d/%d), holding %s, %d souls\n",
+				this.hitPoints,
+				this.maxHitPoints,
+				weaponString,
+				souls
+		);
+
+		if (getWeapon() instanceof StormRuler) {
+			StormRuler stormRuler = (StormRuler) getWeapon();
+			Location here = map.locationOf(this);
+			for (Exit exit : here.getExits()) {
+				Location destination = exit.getDestination();
+				if (map.isAnActorAt(destination)) {
+					Location loc = map.at(destination.x(), destination.y());
+					if (stormRuler.isFullCharged()) {
+						actions.add(new StormRulerStunAction(loc.getActor(), exit.getName()));
+					}
+				}
+			}
 		}
+		lastLocation = map.locationOf(this);
+
 		// return/print the console menu
 		return menu.showMenu(this, actions, display);
-
 	}
 
-	/**
-	 * gets current Max Hit points
-	 * @return integer containing current Max hit points
-	 */
 	public int getMaxHitPoints() {
 		return maxHitPoints;
 	}
 
-	/**
-	 * gets current hit points count
-	 * @return integer containing current count of hit points
-	 */
 	public int getHitPoints() {
 		return hitPoints;
 	}
 
-	/**
-	 * resets the estus flask count using EstusFlask class
-	 */
-	public void resetEstusFlask(){
-		 estusFlask.resetInstance();
-	}
-
-	/**
-	 * gets the number of souls of player at that current time
-	 * @return int number of souls
-	 */
 	public int getSouls() {
 		return souls;
 	}
@@ -82,7 +101,7 @@ public class Player extends Actor implements Soul, Resettable {
 	public void addItemToInventory(Item item) {
 		if (item instanceof GameWeaponItem) {
 			Weapon w = getWeapon();
-			if(w instanceof Item) {
+			if (w instanceof Item) {
 				removeItemFromInventory((Item) getWeapon());
 			}
 		}
@@ -95,11 +114,7 @@ public class Player extends Actor implements Soul, Resettable {
 		soulObject.addSouls(souls);
 		souls = 0;
 	}
-	/**
-	 * adds souls number of Souls from player
-	 * @param souls number souls to be added
-	 * @return true if it is successful in adding souls, else false
-	 */
+
 	@Override
 	public boolean addSouls(int souls) {
 		if (souls >= 0) {
@@ -109,11 +124,6 @@ public class Player extends Actor implements Soul, Resettable {
 		return false;
 	}
 
-	/**
-	 * deducts souls number of Souls from player
-	 * @param souls number souls to be deducted
-	 * @return true if it is successful in deducted souls, else false
-	 */
 	@Override
 	public boolean subtractSouls(int souls) {
 		if (souls >= 0) {
@@ -125,17 +135,16 @@ public class Player extends Actor implements Soul, Resettable {
 		return false;
 	}
 
-	/**
-	 * Resets the instance of player.
-	 */
 	@Override
 	public void resetInstance() {
-		for (Item item : this.getInventory()) {
-			removeItemFromInventory(item);
-		}
+		souls = 0;
 		hitPoints = maxHitPoints;
-		estusFlask.resetInstance();
-		//incomplete: needs to move player to bonfire
+		for (Item item : inventory) {
+			if (item instanceof Resettable) {
+				Resettable resettable = (Resettable) item;
+				resettable.resetInstance();
+			}
+		}
 	}
 
 	@Override

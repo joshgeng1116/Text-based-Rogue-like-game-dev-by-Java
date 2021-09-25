@@ -7,26 +7,29 @@ import edu.monash.fit2099.engine.GameMap;
 
 public class DrinkItemAction extends Action {
 
-    public DrinkItemAction() {
+    private EstusFlask estusFlask;
 
+    public DrinkItemAction(EstusFlask estusFlask) {
+        this.estusFlask = estusFlask;
     }
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        Actions actions = new Actions();
-        actions.add(new EstusFlask());
+        Player player = (Player) actor;
+        if (estusFlask.drink()) {
+            int old = player.getHitPoints();
+            int recover = (int) (player.getMaxHitPoints() * 0.4);
+            player.heal(recover);
 
-        return null;
-
+            int actualRecovered = player.getHitPoints() - old;
+            return String.format("Recovered %d", actualRecovered);
+        } else {
+            return "Estus Flask is empty";
+        }
     }
 
     @Override
     public String menuDescription(Actor actor) {
-        return "Drink Item";
-    }
-
-    @Override
-    public String hotkey() {
-        return null;
+        return String.format("Drink Estus Flask (%d/%d)", estusFlask.getCurrent(), estusFlask.getTotal());
     }
 }

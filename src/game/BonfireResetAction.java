@@ -3,6 +3,8 @@ package game;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.Item;
+
 /**
  * class that executes when rest at FireLink shrine Bonfire is selected
  */
@@ -18,10 +20,15 @@ public class BonfireResetAction extends Action {
     public String execute(Actor actor, GameMap map) {
         Player player = (Player) actor;
         // Refill Player’s health/hit points to the maximum.
-        player.heal(player.getMaxHitPoints()-player.getHitPoints());
+        player.heal(player.getMaxHitPoints());
         // Refill Estus Flask to maximum charges.
-        player.resetEstusFlask();
-        return "Unkindled Health and Estus Flask count reset to maximum";
+        for (Item item : player.getInventory()) {
+            if (item instanceof EstusFlask) {
+                EstusFlask estusFlask = (EstusFlask) item;
+                estusFlask.reset();
+            }
+        }
+        return "All recovered";
     }
 
     /**
