@@ -53,7 +53,7 @@ public class Player extends Actor implements Soul, Resettable {
 			if (lastAction != null) {
 				lastLocation.addItem(dyingSpot);
 			}
-			ResetManager.getInstance().run();
+			resetInstance();
 			map.removeActor(player);
 			map.at(38, 12).addActor(player);
 			return new DoNothingAction();
