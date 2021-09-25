@@ -25,6 +25,10 @@ public class Valley extends Ground {
 		return false;
 	}
 
+	/**
+	 * This checks if the player has fallen into the valley and kills them if they do
+	 * @param location The location of the Ground
+	 */
 	@Override
 	public void tick(Location location) {
 		if (location.getActor() != null && location.getActor() instanceof Player) {
