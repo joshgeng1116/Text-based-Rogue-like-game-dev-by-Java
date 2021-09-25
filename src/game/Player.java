@@ -51,6 +51,14 @@ public class Player extends Actor implements Soul, Resettable {
 		return actions;
 	}
 
+	/**
+	 * go through all the available actions in a playTurn
+	 * @param actions    collection of possible Actions for this Actor
+	 * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
+	 * @param map        the map containing the Actor
+	 * @param display    the I/O object to which messages may be written
+	 * @return a menu with allowable actions
+	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		// Handle multi-turn Actions
@@ -77,7 +85,7 @@ public class Player extends Actor implements Soul, Resettable {
 		);
 
 
-		//check the weapon hold by player, if it's stormruler, add skill of stormruler to player's action
+		//check the weapon hold by player, if it's a fully charged storm ruler, add storm ruler's skill action to actions
 		if (getWeapon() instanceof StormRuler) {
 			StormRuler stormRuler = (StormRuler) getWeapon();
 			Location here = map.locationOf(this);
