@@ -31,12 +31,20 @@ public class Player extends Actor implements Soul, Resettable {
 
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-		// Handle multi-turn Actions
-		if (lastAction.getNextAction() != null)
-			return lastAction.getNextAction();
 
+		if(isConscious()){
+			// Handle multi-turn Actions
+			if (lastAction.getNextAction() != null)
+				return lastAction.getNextAction();
+
+		}
+		else {
+			System.out.println("YOU DIED!");
+			resetInstance();
+		}
 		// return/print the console menu
 		return menu.showMenu(this, actions, display);
+
 	}
 
 	/**
@@ -117,11 +125,17 @@ public class Player extends Actor implements Soul, Resettable {
 		return false;
 	}
 
+	/**
+	 * Resets the instance of player.
+	 */
 	@Override
 	public void resetInstance() {
 		for (Item item : this.getInventory()) {
 			removeItemFromInventory(item);
 		}
+		hitPoints = maxHitPoints;
+		estusFlask.resetInstance();
+		//incomplete: needs to move player to bonfire
 	}
 
 	@Override
