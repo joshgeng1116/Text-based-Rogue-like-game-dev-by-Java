@@ -21,4 +21,8 @@ public class Broadsword extends GameWeaponItem{
         }
         return super.damage();
     }
+
+    public static int cost(){
+        return 500;
+    }
 }

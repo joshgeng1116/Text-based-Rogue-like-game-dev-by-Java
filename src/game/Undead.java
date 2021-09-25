@@ -16,8 +16,6 @@ public class Undead extends Actor implements Soul{
 	// Will need to change this to a collection if Undeads gets additional Behaviours.
 	private ArrayList<Behaviour> behaviours = new ArrayList<>();
 	private Behaviour followPlayer = null;
-	private int souls = 50;
-
 	/** 
 	 * Constructor.
 	 * All Undeads are represented by an 'u' and have 30 hit points.
