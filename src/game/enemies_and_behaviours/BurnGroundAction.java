@@ -1,4 +1,4 @@
-package game.weapons_and_skills;
+package game.enemies_and_behaviours;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;

@@ -5,9 +5,11 @@ import game.GameWeaponItem;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class StormRuler extends GameWeaponItem {
 
+    Random random = new Random();
     private int chargeTimes;
     private int maxChargeTimes = 3;
 
@@ -36,6 +38,19 @@ public class StormRuler extends GameWeaponItem {
      */
     public boolean isFullCharged() {
         return chargeTimes==maxChargeTimes;
+    }
+
+    /**
+     *20% double the damage
+     * @return damage
+     */
+    @Override
+    public int damage() {
+        if (random.nextInt(100) < 20) {
+            // Critical Strike
+            return damage * 2;
+        }
+        return super.damage();
     }
 
     /**

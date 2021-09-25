@@ -6,7 +6,6 @@ import game.Player;
 import game.enums.Status;
 import game.interfaces.Behaviour;
 import game.interfaces.Soul;
-import game.weapons_and_skills.BurnGroundAction;
 import game.weapons_and_skills.Machete;
 
 

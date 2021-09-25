@@ -25,7 +25,7 @@ public class SpinAttackAction extends Action {
                 if (map.getXRange().contains(x) && map.getYRange().contains(y)) {
                     Actor target = map.at(x, y).getActor();
                     if (target != null) {
-                        int damage = (int) (weapon.damage() * 1.5);
+                        int damage = (int) (weapon.damage() * 0.5);
                         String r = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
                         result.add(r);
                     }
