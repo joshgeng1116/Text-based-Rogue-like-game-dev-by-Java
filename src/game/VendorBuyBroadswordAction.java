@@ -19,7 +19,8 @@ public class VendorBuyBroadswordAction extends VendorBuyAction{
         Player player = (Player) actor;
         if (player.getSouls() > Broadsword.cost()){
             player.subtractSouls(Broadsword.cost());
-            return "Broadsword brought successfully, "+ new SwapWeaponAction(broadsword);} //need a reference to the Broadsword
+            SwapWeaponAction bS= new SwapWeaponAction(broadsword);
+            return "Broadsword brought successfully, "+ bS.execute(actor, map);} //need a reference to the Broadsword
         else{
             return "Not enough Souls to purchase Broadsword";
         }}

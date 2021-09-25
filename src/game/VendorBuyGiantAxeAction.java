@@ -21,7 +21,8 @@ public class VendorBuyGiantAxeAction extends VendorBuyAction{
         Player player = (Player) actor;
         if (player.getSouls() > GiantAxe.cost()){
             player.subtractSouls(GiantAxe.cost());
-            return "Giant Axe brought successfully, "+ new SwapWeaponAction(giantAxe);} //need a reference to the Giant Axe
+            SwapWeaponAction gA =new SwapWeaponAction(giantAxe);
+            return "Giant Axe brought successfully, "+ gA.execute(actor, map) ;} //need a reference to the Giant Axe
         else{
             return "Not enough Souls to purchase Giant Axe";
         }}
