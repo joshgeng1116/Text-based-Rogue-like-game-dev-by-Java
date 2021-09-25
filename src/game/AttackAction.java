@@ -52,6 +52,8 @@ public class AttackAction extends Action {
 		int damage = weapon.damage();
 		String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
 		target.hurt(damage);
+
+		//if target dead
 		if (!target.isConscious()) {
 			Actions dropActions = new Actions();
 			// drop all items
@@ -59,14 +61,15 @@ public class AttackAction extends Action {
 				dropActions.add(item.getDropAction(actor));
 			for (Action drop : dropActions)
 				drop.execute(target, map);
-			// remove actor
-			// FINISHED: In A1 scenario, you must not remove a Player from the game yet. What to do, then?
+
+			//transfer soul to player
 			if (actor instanceof Soul && target instanceof Soul) {
 				Soul soul1 = (Soul) actor;
 				Soul soul2 = (Soul) target;
 				soul2.transferSouls(soul1);
 			}
 
+			//if player dead
 			if (target instanceof Player) {
 				Player player = (Player) target;
 				DyingSpot dyingSpot = new DyingSpot(player.getSouls());
@@ -74,6 +77,8 @@ public class AttackAction extends Action {
 				ResetManager.getInstance().run();
 				map.removeActor(target);
 				map.at(38, 12).addActor(target);
+
+			//if skeleton dead
 			} else if (target instanceof Skeleton) {
 				Skeleton skeleton = (Skeleton) target;
 				if (!skeleton.revival()) {
