@@ -5,18 +5,22 @@ import edu.monash.fit2099.engine.DropItemAction;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 
-public class DyingSpot extends Item {
+public class TokenOfSoul extends Item {
 
     private int souls;
 
     /**
      * Constructor.
      */
-    public DyingSpot(int souls) {
-        super("DyingSpot",'$', true);
+    public TokenOfSoul(int souls) {
+        super("Token of Soul",'$', true);
         this.souls = souls;
     }
 
+    /**
+     * allow player to collect the souls when it on dying spot
+     * @param location
+     */
     @Override
     public void tick(Location location) {
         if(location.getActor() instanceof Player) {

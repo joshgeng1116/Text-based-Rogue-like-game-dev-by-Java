@@ -64,9 +64,9 @@ public class Player extends Actor implements Soul, Resettable {
 		// Handle multi-turn Actions
 		if (!this.isConscious()) {
 			Player player = this;
-			DyingSpot dyingSpot = new DyingSpot(player.getSouls());
+			TokenOfSoul tokenOfSoul = new TokenOfSoul(player.getSouls());
 			if (lastAction != null) {
-				lastLocation.addItem(dyingSpot);
+				lastLocation.addItem(tokenOfSoul);
 			}
 			resetInstance();
 			map.removeActor(player);

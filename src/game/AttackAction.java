@@ -41,6 +41,12 @@ public class AttackAction extends Action {
 		this.direction = direction;
 	}
 
+	/**
+	 * execute attack actions, apply hurt to target
+	 * @param actor The actor performing the action.
+	 * @param map The map the actor is on.
+	 * @return result of attack action
+	 */
 	@Override
 	public String execute(Actor actor, GameMap map) {
 
@@ -73,8 +79,8 @@ public class AttackAction extends Action {
 			//if player dead
 			if (target instanceof Player) {
 				Player player = (Player) target;
-				DyingSpot dyingSpot = new DyingSpot(player.getSouls());
-				map.locationOf(target).addItem(dyingSpot);
+				TokenOfSoul tokenOfSoul = new TokenOfSoul(player.getSouls());
+				map.locationOf(target).addItem(tokenOfSoul);
 				ResetManager.getInstance().run();
 				map.removeActor(target);
 				map.at(38, 12).addActor(target);

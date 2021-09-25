@@ -12,6 +12,12 @@ public class StormRulerChargeAction extends Action {
         this.stormRuler = stormRuler;
     }
 
+    /**
+     * charge the storm ruler
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * @return string which tell player storm ruler charged
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
         stormRuler.charge();

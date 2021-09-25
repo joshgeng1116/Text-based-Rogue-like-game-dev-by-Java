@@ -10,6 +10,12 @@ public class StormRulerStunAction extends AttackAction {
         super(target, direction);
     }
 
+    /**
+     * double the damage and increase the hit chance in an attack action
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * @return result of attack action with using storm ruler's skill
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
         StormRuler stormRuler = (StormRuler) actor.getWeapon();
