@@ -5,7 +5,9 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
 
-
+/**
+ *  Vendor class that the player is able to trade in souls to buy items from, Vendor/FireLink is located next to the bonfire shrine
+ */
 public class Vendor extends Ground {
     /**
      * Constructor of Vendor Class
