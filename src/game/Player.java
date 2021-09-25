@@ -5,6 +5,9 @@ import game.enums.Abilities;
 import game.enums.Status;
 import game.interfaces.Resettable;
 import game.interfaces.Soul;
+import game.weapons_and_skills.Broadsword;
+import game.weapons_and_skills.StormRuler;
+import game.weapons_and_skills.StormRulerStunAction;
 
 /**
  * Class representing the Player.

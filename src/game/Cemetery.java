@@ -2,6 +2,7 @@ package game;
 
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
+import game.enemies_and_behaviours.Undead;
 
 import java.util.Random;
 

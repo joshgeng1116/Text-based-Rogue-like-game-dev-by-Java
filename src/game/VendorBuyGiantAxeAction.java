@@ -2,6 +2,7 @@ package game;
 
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
+import game.weapons_and_skills.GiantAxe;
 
 /**
  * class that executes when buy Giant Axe is selected

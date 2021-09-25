@@ -1,6 +1,9 @@
-package game;
+package game.weapons_and_skills;
 
-public class Machete extends GameWeaponItem{
+import game.GameWeaponItem;
+import game.enemies_and_behaviours.LordOfCinder;
+
+public class Machete extends GameWeaponItem {
     private LordOfCinder lordOfCinder;
 
     /**
