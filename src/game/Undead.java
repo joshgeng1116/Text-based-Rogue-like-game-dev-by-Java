@@ -4,18 +4,18 @@ package game;
 import edu.monash.fit2099.engine.*;
 import game.enums.Status;
 import game.interfaces.Behaviour;
+import game.interfaces.Soul;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * An undead minion.
  */
-public class Undead extends Actor {
+public class Undead extends Actor implements Soul{
 	// Will need to change this to a collection if Undeads gets additional Behaviours.
 	private ArrayList<Behaviour> behaviours = new ArrayList<>();
 	private Behaviour followPlayer = null;
-	private int souls = 50;
-
 	/** 
 	 * Constructor.
 	 * All Undeads are represented by an 'u' and have 30 hit points.
@@ -55,30 +55,52 @@ public class Undead extends Actor {
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		// loop through all behaviours
 		Location loc = map.locationOf(this);
-		int[] dxlst = new int[]{-1, 1, 0, 0};
-		int[] dylst = new int[]{0, 0, -1, 1};
-		for (int i = 0; i < 4; i++) {
-			int dx = dxlst[i];
-			int dy = dylst[i];
-			int x = loc.x() + dx;
-			int y = loc.y() + dy;
-			if (map.getXRange().contains(x) && map.getYRange().contains(y)) {
-				Location cell = map.at(x, y);
-				if (cell.getActor() instanceof Player) {
-					if (followPlayer == null) {
-						followPlayer = new FollowBehaviour(cell.getActor());
+		for (int dx = -1; dx <= 1; dx++) {
+			for (int dy = -1; dy <= 1; dy++) {
+				int x = loc.x() + dx;
+				int y = loc.y() + dy;
+				if (map.getXRange().contains(x) && map.getYRange().contains(y)) {
+					Location cell = map.at(x, y);
+					if (cell.getActor() instanceof Player) {
+						if (followPlayer == null) {
+							followPlayer = new FollowBehaviour(cell.getActor());
+						}
+						return new AttackAction(cell.getActor(), "");
 					}
-					return new AttackAction(cell.getActor(), "");
 				}
 			}
 		}
-
 		if (followPlayer != null) {
 			Action followAction = followPlayer.getAction(this, map);
 			if (followAction != null) return followAction;
 		}
 
+
+		for (Behaviour Behaviour : behaviours) {
+			Action action = Behaviour.getAction(this, map);
+			if (action != null)
+				return action;
+		}
 		return new DoNothingAction();
 	}
 
+	@Override
+	public void hurt(int points) {
+		Random random = new Random();
+		if (random.nextInt(100) < 10) {
+			super.hurt(hitPoints);
+		}else{
+			super.hurt(points);
+		}
+	}
+
+	@Override
+	public void transferSouls(Soul soulObject) {
+		soulObject.addSouls(50);
+	}
+
+	@Override
+	public String toString() {
+		return String.format("%s(%d/%d)", name, hitPoints, maxHitPoints);
+	}
 }
