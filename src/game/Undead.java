@@ -86,6 +86,7 @@ public class Undead extends Actor implements Soul{
 		return new DoNothingAction();
 	}
 
+	@Override
 	public void hurt(int points) {
 		Random random = new Random();
 		if (random.nextInt(100) < 10) {

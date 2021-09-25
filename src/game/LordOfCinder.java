@@ -13,6 +13,7 @@ import game.interfaces.Soul;
 public class LordOfCinder extends Actor implements Soul {
     private Behaviour followPlayer = null;
     private int souls = 5000;
+    private boolean lastEmberForm = false;
 
     /**
      * Constructor.
@@ -37,7 +38,13 @@ public class LordOfCinder extends Actor implements Soul {
      */
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+
         Location loc = map.locationOf(this);
+        if (!lastEmberForm && isEmberForm()) {
+            lastEmberForm = true;
+            return new BurnGroundAction();
+        }
+
         int[] dxlst = new int[]{-1, 1, 0, 0};
         int[] dylst = new int[]{0, 0, -1, 1};
         for (int i = 0; i < 4; i++) {
@@ -64,6 +71,13 @@ public class LordOfCinder extends Actor implements Soul {
         return new DoNothingAction();
     }
 
+    @Override
+    public void hurt(int points) {
+        super.hurt(points);
+        if(!isConscious()) {
+            System.out.println("LORD OF CINDER FALLEN");
+        }
+    }
 
     @Override
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
