@@ -17,7 +17,7 @@ public class EstusFlask extends Item implements Resettable {
     public EstusFlask() {
         super("Estus Flask", 'F', false);
         allowableActions.add(new DrinkItemAction(this));
-        reset();
+        resetInstance();
     }
 
     /**
@@ -36,13 +36,7 @@ public class EstusFlask extends Item implements Resettable {
         return current;
     }
 
-    /**
-     * A method for resetting the estus flask
-     */
-    public void reset() {
-        total = 3;
-        current = 3;
-    }
+
 
     /**
      * A method for determining if the player has any charges left
@@ -56,9 +50,13 @@ public class EstusFlask extends Item implements Resettable {
         return false;
     }
 
+    /**
+     * A method for resetting the estus flask
+     */
     @Override
     public void resetInstance() {
-        current = total;
+        total = 3;
+        current = 3;
     }
 
     @Override

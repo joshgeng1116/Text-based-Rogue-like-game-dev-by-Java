@@ -25,7 +25,7 @@ public class BonfireResetAction extends Action {
         for (Item item : player.getInventory()) {
             if (item instanceof EstusFlask) {
                 EstusFlask estusFlask = (EstusFlask) item;
-                estusFlask.reset();
+                estusFlask.resetInstance();
             }
         }
         return "All recovered";
