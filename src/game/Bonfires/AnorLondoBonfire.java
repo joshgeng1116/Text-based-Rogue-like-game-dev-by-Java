@@ -4,20 +4,19 @@ import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
+import game.Player;
 
 public class AnorLondoBonfire extends Ground {
+    private boolean isBonfireLit = false;
 
     /**
-     * Constructor.
-     *
-     * @param displayChar character to display for this type of terrain
+     * Constructor
      */
-    public AnorLondoBonfire(char displayChar) {
+    public AnorLondoBonfire() {
         super('A');
     }
     /**
      * Contains all the actions that Bonfire can execute
-     * @param actor the Actor acting
      * @param location the current Location
      * @param direction the direction of the Ground from the Actor
      * @return array of actions that Bonfire can perform
@@ -25,8 +24,16 @@ public class AnorLondoBonfire extends Ground {
     @Override
     public Actions allowableActions(Actor actor, Location location, String direction) {
         Actions actions =new Actions();
-        if !isBonfireLit(){
+        Player player = (Player) actor;
+        if (!isBonfireLit){
             actions.add( new LightBonfireAction());
-        }else {actions.add( new BonfireResetAction("Anor Londo Bonfire"));}
-        return actions;
-}}
+            isBonfireLit = true;
+            player.getBonfires().addBonfire(this);}
+        else{actions.add( new BonfireResetAction("Anor Londo Bonfire"));
+            for ( Ground i : player.getBonfires().getBonfiresList()){
+                if (i!=this){
+                /*actions.add( new TeleportAction(i) ); /*implement a for loop, looping all the other shrines that r lit
+            and possible to teleport to*/}
+            }}
+        return actions;}
+}

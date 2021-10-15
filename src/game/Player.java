@@ -1,6 +1,7 @@
 package game;
 
 import edu.monash.fit2099.engine.*;
+import game.Bonfires.Bonfire;
 import game.enums.Abilities;
 import game.enums.Status;
 import game.interfaces.Resettable;
@@ -14,10 +15,9 @@ import game.weapons_and_skills.StormRulerStunAction;
  */
 public class Player extends Actor implements Soul, Resettable {
 	private final Menu menu = new Menu();
-
 	private int souls = 0;
-
 	private Location lastLocation;
+	private Bonfire bonfires = new Bonfire();
 
 	/**
 	 * Constructor.
@@ -129,7 +129,6 @@ public class Player extends Actor implements Soul, Resettable {
 	public int getSouls() {
 		return souls;
 	}
-
 	/**
 	 * Adds weapons to players inventory
 	 * @param item The Item to add.
@@ -183,6 +182,11 @@ public class Player extends Actor implements Soul, Resettable {
 		}
 		return false;
 	}
+
+	/** list of bonfires that exists/is currently lit
+	 * @return list of bonfires
+	 */
+	public Bonfire getBonfires(){return bonfires;}
 
 	/**
 	 * Resets the player instances HP , souls and inventory

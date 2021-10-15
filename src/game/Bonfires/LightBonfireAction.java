@@ -5,11 +5,9 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 
 public class LightBonfireAction extends Action {
-    private boolean bonfireLit = false;
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        this.bonfireLit = true;
         return "Bonfire Lit";
     }
 

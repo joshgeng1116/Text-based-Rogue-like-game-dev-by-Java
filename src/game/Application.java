@@ -1,8 +1,11 @@
 package game;
 
 import edu.monash.fit2099.engine.*;
+import game.Bonfires.AnorLondoBonfire;
+import game.Bonfires.FirelinkShrineBonfire;
 import game.enemies_and_behaviours.LordOfCinder;
 import game.enemies_and_behaviours.Skeleton;
+import game.vendors.Vendor;
 import game.weapons_and_skills.StormRuler;
 
 import java.util.Arrays;
@@ -19,7 +22,7 @@ public class Application {
 
 			World world = new World(new Display());
 
-			FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Valley(),  new Bonfire(), new Cemetery(), new Vendor());
+			FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Valley(),  new FirelinkShrineBonfire(), new Cemetery(), new Vendor());
 
 			List<String> map = Arrays.asList(
 					"..++++++..+++...........................++++......+++.................+++.......",
