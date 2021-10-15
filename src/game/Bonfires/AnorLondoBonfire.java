@@ -25,6 +25,8 @@ public class AnorLondoBonfire extends Ground {
     @Override
     public Actions allowableActions(Actor actor, Location location, String direction) {
         Actions actions =new Actions();
-        actions.add( new LightBonfireAction());
+        if !isBonfireLit(){
+            actions.add( new LightBonfireAction());
+        }else {actions.add( new BonfireResetAction("Anor Londo Bonfire"));}
         return actions;
 }}

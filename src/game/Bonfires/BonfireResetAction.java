@@ -10,6 +10,12 @@ import game.Player;
  * class that executes when rest at FireLink shrine Bonfire is selected
  */
 public class BonfireResetAction extends Action {
+    String bonfireName;
+    public BonfireResetAction(String bonfire) {
+        super();
+        this.bonfireName = bonfire;
+
+    }
     /**
      * resets the player's health/hit points to the maximum
      * Refill Estus Flask to maximum charges
@@ -39,6 +45,6 @@ public class BonfireResetAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return "Rest at Firelink Shrine's Bonfire";
+        return "Rest at "+bonfireName+"'s Bonfire";
     }
 }
