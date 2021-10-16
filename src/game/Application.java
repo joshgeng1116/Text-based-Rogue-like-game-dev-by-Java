@@ -22,7 +22,7 @@ public class Application {
 
 			World world = new World(new Display());
 
-			FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Valley(),  new FirelinkShrineBonfire(), new Cemetery(), new Vendor(), new Ambiguous());
+			FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Valley(),  new FirelinkShrineBonfire(), new Cemetery(), new Vendor(), new Ambiguous(), new FogDoor());
 
 			List<String> map = Arrays.asList(
 					"..++++++..+++...........................++++......+++.................+++.......",
@@ -39,7 +39,7 @@ public class Application {
 					"...........++.....................#__FB___#.......................+.............",
 					".........+++......................#_______#...........c............++...........",
 					"............+++...................####_####..........................+..........",
-					"..............+.......c..............?...............................++.........",
+					"..............+.......c..............?=..............................++.........",
 					"..............++.................................................++++++.........",
 					"............+++...................................c...............++++..........",
 					"+..................................................................++...........",
@@ -63,7 +63,7 @@ public class Application {
 
 			Random random = new Random(1);
 
-		// Place a Hollow in the the map
+		// Place a Hollow in the map
 		// Place cemetery
 		for (int i = 0; i < 4; i++) {
 			Skeleton skeleton = new Skeleton("s"+i);
