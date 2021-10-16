@@ -13,7 +13,7 @@ public class LordOfCinder extends Actor implements Soul {
     private Behaviour followPlayer = null;
     private int souls = 5000;
     private boolean lastEmberForm = false;
-
+    private String name;
     /**
      * Constructor.
      */
@@ -21,8 +21,15 @@ public class LordOfCinder extends Actor implements Soul {
         super(name, displayChar, hitPoints);
         addCapability(Status.HOSTILE_TO_PLAYER);
         addItemToInventory(new Machete(this));
+        this.name = name;
 
     }
+
+    /**
+     * gets the name of the lord of cinder
+     * @return string containing lord of cinder
+     */
+    public String name(){return name;}
 
     /**
      * check if the heal of lord of cinder below 50%

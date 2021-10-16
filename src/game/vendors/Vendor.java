@@ -33,6 +33,8 @@ public class Vendor extends Ground {
         actions.add(new PurchaseAction(new GiantAxe()));
         actions.add(new PurchaseAction(new StormRuler()));
         actions.add(new VendorBuyHPAction());
+        /*actions.add(new TradingAction(new CinderOfAldrich()));    Cinder of bosses have not been implemented yet
+        actions.add(new TradingAction(new CinderOfYhorm()));*/
         return actions;
     }
 }
