@@ -1,9 +1,10 @@
-package game;
+package game.groundObj;
 
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.DropItemAction;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
+import game.Player;
 
 public class TokenOfSoul extends Item {
 
@@ -26,7 +27,7 @@ public class TokenOfSoul extends Item {
         if(location.getActor() instanceof Player) {
             Player player = (Player) location.getActor();
             player.addSouls(souls);
-
+            location.removeItem(this);
         }
         super.tick(location);
     }

@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.*;
 import game.Bonfires.Bonfire;
 import game.enums.Abilities;
 import game.enums.Status;
+import game.groundObj.TokenOfSoul;
 import game.interfaces.Resettable;
 import game.interfaces.Soul;
 import game.weapons_and_skills.Broadsword;
@@ -15,7 +16,7 @@ import game.weapons_and_skills.StormRulerStunAction;
  */
 public class Player extends Actor implements Soul, Resettable {
 	private final Menu menu = new Menu();
-	private int souls = 0;
+	private int souls = 5000;
 	private Location lastLocation;
 	private Bonfire bonfires = new Bonfire();
 

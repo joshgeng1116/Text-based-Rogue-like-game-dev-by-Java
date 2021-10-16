@@ -1,10 +1,10 @@
 package game;
 
 import edu.monash.fit2099.engine.*;
-import game.Bonfires.AnorLondoBonfire;
 import game.Bonfires.FirelinkShrineBonfire;
 import game.enemies_and_behaviours.LordOfCinder;
 import game.enemies_and_behaviours.Skeleton;
+import game.groundObj.*;
 import game.vendors.Vendor;
 import game.weapons_and_skills.StormRuler;
 
@@ -22,7 +22,7 @@ public class Application {
 
 			World world = new World(new Display());
 
-			FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Valley(),  new FirelinkShrineBonfire(), new Cemetery(), new Vendor());
+			FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Valley(),  new FirelinkShrineBonfire(), new Cemetery(), new Vendor(), new Ambiguous());
 
 			List<String> map = Arrays.asList(
 					"..++++++..+++...........................++++......+++.................+++.......",
@@ -39,7 +39,7 @@ public class Application {
 					"...........++.....................#__FB___#.......................+.............",
 					".........+++......................#_______#...........c............++...........",
 					"............+++...................####_####..........................+..........",
-					"..............+.......c..............................................++.........",
+					"..............+.......c..............?...............................++.........",
 					"..............++.................................................++++++.........",
 					"............+++...................................c...............++++..........",
 					"+..................................................................++...........",
@@ -54,7 +54,7 @@ public class Application {
 			GameMap gameMap = new GameMap(groundFactory, map);
 			world.addGameMap(gameMap);
 
-			Actor player = new Player("Unkindled (Player)", '@', 100);
+			Actor player = new Player("Unkindled (Player)", '@', 10000);
 			world.addPlayer(player, gameMap.at(38, 12));
 
 			// Place Yhorm the Giant/boss in the map
