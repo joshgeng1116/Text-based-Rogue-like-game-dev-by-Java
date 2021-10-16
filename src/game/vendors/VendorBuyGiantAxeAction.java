@@ -1,3 +1,4 @@
+/*
 package game.vendors;
 
 import edu.monash.fit2099.engine.Actor;
@@ -6,18 +7,22 @@ import game.Player;
 import game.SwapWeaponAction;
 import game.weapons_and_skills.GiantAxe;
 
+*/
 /**
  * class that executes when buy Giant Axe is selected
- */
-public class VendorBuyGiantAxeAction extends VendorBuyAction{
+ *//*
+
+public class VendorBuyGiantAxeAction extends PurchaseAction {
     private GiantAxe giantAxe = new GiantAxe();
 
-    /**
+    */
+/**
      * Method that executes when unkindled wants to buy and swap weapon with Giant Axe
      * @param actor The actor performing the action.
      * @param map The map the actor is on.
      * @return string indicating if purchase was successful
-     */
+     *//*
+
 
     @Override
     public String execute(Actor actor, GameMap map) {
@@ -30,13 +35,16 @@ public class VendorBuyGiantAxeAction extends VendorBuyAction{
             return "Not enough Souls to purchase Giant Axe";
         }}
 
-    /**
+    */
+/**
      * menu description for buying Giant Axe
      * @param actor The actor performing the action.
      * @return string containing purchase description
-     */
+     *//*
+
     @Override
     public String menuDescription(Actor actor) {
         return "Unkindled buys Giant Axe (1000 souls)";
     }
 }
+*/

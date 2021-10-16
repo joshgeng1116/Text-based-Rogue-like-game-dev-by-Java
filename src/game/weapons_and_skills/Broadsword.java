@@ -4,10 +4,8 @@ import game.GameWeaponItem;
 
 import java.util.Random;
 
-public class Broadsword extends GameWeaponItem {
-
+public class Broadsword extends GameWeaponItem{
     Random random = new Random();
-
     /**
      * Constructor of boardsword.
      */
@@ -32,7 +30,7 @@ public class Broadsword extends GameWeaponItem {
      *
      * @return cost to buy it in Vendor
      */
-    public static int cost(){
+    public int cost(){
         return 500;
     }
 }

@@ -31,7 +31,7 @@ public class GiantAxe extends GameWeaponItem {
      *
      * @return cost to buy it in Vendor
      */
-    public static int cost(){
+    public int cost(){
         return 1000;
     }
 }

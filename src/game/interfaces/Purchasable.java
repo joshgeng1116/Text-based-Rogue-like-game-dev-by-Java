@@ -1,7 +1,9 @@
 package game.interfaces;
 
+
 public interface Purchasable {
-    boolean isexist();
+
+    public void Cost(int num);
 
 
 }

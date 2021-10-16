@@ -183,7 +183,7 @@ public class Player extends Actor implements Soul, Resettable {
 		return false;
 	}
 
-	/** list of bonfires that exists/is currently lit
+	/** list of bonfires that exists/is currently lit to player
 	 * @return list of bonfires
 	 */
 	public Bonfire getBonfires(){return bonfires;}

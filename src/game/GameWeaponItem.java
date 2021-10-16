@@ -27,4 +27,12 @@ public class GameWeaponItem extends WeaponItem {
     public DropItemAction getDropAction(Actor actor) {
         return null;
     }
-}
+
+    /**
+     * gets the name of the weapon
+     * @return string containing name of weapon
+     */
+    public String weaponName(){return name;}
+    public int cost(){
+        return 0;
+    }}
