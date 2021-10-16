@@ -1,4 +1,4 @@
-package game.groundObj;
+package game.groundNitem;
 
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Ground;

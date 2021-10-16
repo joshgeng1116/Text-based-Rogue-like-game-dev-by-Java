@@ -4,14 +4,14 @@ import edu.monash.fit2099.engine.*;
 import game.AttackAction;
 import game.Player;
 import game.enums.Status;
-import game.groundObj.TokenOfSoul;
+import game.groundNitem.TokenOfSoul;
 import game.interfaces.Behaviour;
 import game.interfaces.Soul;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Mimi extends Actor {
+public class Mimi extends Actor implements Soul{
     private ArrayList<Behaviour> behaviours = new ArrayList<>();
     private Behaviour followPlayer = null;
     Random random1 = new Random();
@@ -114,6 +114,11 @@ public class Mimi extends Actor {
                 map.locationOf(this).addItem(new TokenOfSoul(300));
             }
         }
+    }
+
+    @Override
+    public void transferSouls(Soul soulObject) {
+        soulObject.addSouls(200);
     }
 
     /**

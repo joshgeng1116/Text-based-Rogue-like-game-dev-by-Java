@@ -1,10 +1,8 @@
-package game.groundObj;
+package game.groundNitem;
 
 import edu.monash.fit2099.engine.*;
 import game.Dirt;
-import game.Player;
 import game.enemies_and_behaviours.Mimi;
-import game.enemies_and_behaviours.Undead;
 
 import java.util.Random;
 

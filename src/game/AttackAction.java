@@ -9,7 +9,7 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Weapon;
 import game.enemies_and_behaviours.Skeleton;
-import game.groundObj.TokenOfSoul;
+import game.groundNitem.TokenOfSoul;
 import game.interfaces.Soul;
 
 /**

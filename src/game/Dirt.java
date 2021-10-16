@@ -3,7 +3,7 @@ package game;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
-import game.enemies_and_behaviours.LordOfCinder;
+import game.enemies_and_behaviours.Yhorm;
 
 /**
  * A class that represents bare dirt.
@@ -26,7 +26,7 @@ public class Dirt extends Ground {
 		if (burn > 0) {
 			Actor actor = location.getActor();
 			if (actor != null) {
-				if (!(actor instanceof LordOfCinder)) {
+				if (!(actor instanceof Yhorm)) {
 					actor.hurt(25);
 				}
 			}

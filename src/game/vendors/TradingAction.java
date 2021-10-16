@@ -3,19 +3,19 @@ package game.vendors;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
-import game.enemies_and_behaviours.LordOfCinder;
+import game.enemies_and_behaviours.Yhorm;
 
 /**
  * classs used for trading lord of cinders
  */
 public class TradingAction extends Action {
-    LordOfCinder boss;
+    Yhorm boss;
 
     /**
      * constructor for which lord of cinders will be traded with
      * @param boss
      */
-    public TradingAction(LordOfCinder boss) {
+    public TradingAction(Yhorm boss) {
         this.boss = boss;
     }
 

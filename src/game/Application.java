@@ -2,9 +2,9 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 import game.Bonfires.FirelinkShrineBonfire;
-import game.enemies_and_behaviours.LordOfCinder;
+import game.enemies_and_behaviours.Yhorm;
 import game.enemies_and_behaviours.Skeleton;
-import game.groundObj.*;
+import game.groundNitem.*;
 import game.vendors.Vendor;
 import game.weapons_and_skills.StormRuler;
 
@@ -54,11 +54,11 @@ public class Application {
 			GameMap gameMap = new GameMap(groundFactory, map);
 			world.addGameMap(gameMap);
 
-			Actor player = new Player("Unkindled (Player)", '@', 10000);
+			Actor player = new Player("Unkindled (Player)", '@', 1000);
 			world.addPlayer(player, gameMap.at(38, 12));
 
 			// Place Yhorm the Giant/boss in the map
-			gameMap.at(6, 25).addActor(new LordOfCinder("Yhorm the Giant", 'Y', 500));
+			gameMap.at(6, 25).addActor(new Yhorm("Yhorm the Giant", 'Y', 500));
 			gameMap.at(7, 25).addItem(new StormRuler());
 
 			Random random = new Random(1);
