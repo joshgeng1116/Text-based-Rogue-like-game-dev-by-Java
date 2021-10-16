@@ -23,7 +23,7 @@ public class FirelinkShrineBonfire extends Ground {
     }
 
     /**
-     * Contains all the actions that Bonfire can execute
+     * Contains all the actions that Fire link Bonfire can execute
      * @param actor the Actor acting
      * @param location the current Location
      * @param direction the direction of the Ground from the Actor

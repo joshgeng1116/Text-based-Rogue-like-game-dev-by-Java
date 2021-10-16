@@ -9,21 +9,25 @@ import game.SwapWeaponAction;
 
 
 /**
- * Parent class of the VendorBuy[Item]Action classes, all the actions that vendor wants to do, will be extended from this class
+ * Class used to purchase items
  */
 public class PurchaseAction extends Action{
     GameWeaponItem weaponItem;
 
+    /**
+     * constructor of purchase action class
+     * @param weapon weapon that wants to be purchased
+     */
     public PurchaseAction(GameWeaponItem weapon) {
         super();
         weaponItem = weapon;
     }
 
     /**
-     * In the class that if a new vendor Buy action class is doing nothing (does no purpose)
+     * checks if player has enough souls and if yes, swaps the current weapon item with the one purchased
      * @param actor The actor performing the action.
      * @param map The map the actor is on.
-     * @return string saying the actor is doing nothing
+     * @return string saying the actor has either purchased successfully or not
      */
     @Override
     public String execute(Actor actor, GameMap map) {
@@ -37,9 +41,9 @@ public class PurchaseAction extends Action{
         }}
 
     /**
-     * prints the string saying that the actor is doing nothing (no actions were conducted)
+     * menu description that appears to player in console
      * @param actor The actor performing the action.
-     * @return string saying that the actor is doing nothing
+     * @return string saying what weapon is available and its cost
      */
     @Override
     public String menuDescription(Actor actor) {

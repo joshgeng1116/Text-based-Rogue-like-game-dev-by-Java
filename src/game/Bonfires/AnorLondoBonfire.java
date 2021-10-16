@@ -16,7 +16,7 @@ public class AnorLondoBonfire extends Ground {
         super('A');
     }
     /**
-     * Contains all the actions that Bonfire can execute
+     * Contains all the actions that AnorLondoBonfire can execute
      * @param location the current Location
      * @param direction the direction of the Ground from the Actor
      * @return array of actions that Bonfire can perform

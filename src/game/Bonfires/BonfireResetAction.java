@@ -11,6 +11,11 @@ import game.Player;
  */
 public class BonfireResetAction extends Action {
     String bonfireName;
+
+    /**
+     * constructor for bonfire reset action
+     * @param bonfire which bonfire to reset
+     */
     public BonfireResetAction(String bonfire) {
         super();
         this.bonfireName = bonfire;
