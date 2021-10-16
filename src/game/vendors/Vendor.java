@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
 import game.weapons_and_skills.Broadsword;
 import game.weapons_and_skills.GiantAxe;
+import game.weapons_and_skills.StormRuler;
 
 /**
  *  Vendor class that the player is able to trade in souls to buy items from, Vendor/FireLink is located next to the bonfire shrine
@@ -30,6 +31,7 @@ public class Vendor extends Ground {
         Actions actions =new Actions();
         actions.add(new PurchaseAction(new Broadsword()));
         actions.add(new PurchaseAction(new GiantAxe()));
+        actions.add(new PurchaseAction(new StormRuler()));
         actions.add(new VendorBuyHPAction());
         return actions;
     }

@@ -80,4 +80,11 @@ public class StormRuler extends GameWeaponItem {
             }
         }
     }
+    /**
+     *
+     * @return cost to buy it in Vendor
+     */
+    public int cost(){
+        return 2000;
+    }
 }
