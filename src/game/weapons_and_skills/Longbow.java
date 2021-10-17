@@ -4,6 +4,6 @@ import game.GameWeaponItem;
 
 public class Longbow extends GameWeaponItem {
     public Longbow() {
-        super("Yhorm’s Great Machete", 'l', 70, "hit", 80);
+        super("Devourer's Longbow", 'l', 70, "hit", 80);
     }
 }
