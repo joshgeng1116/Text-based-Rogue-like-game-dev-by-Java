@@ -1,8 +1,9 @@
 package game.vendors;
 
-import edu.monash.fit2099.engine.Action;
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.*;
+import game.GameWeaponItem;
+import game.Player;
+import game.SwapWeaponAction;
 import game.enemies_and_behaviours.Yhorm;
 
 /**
@@ -15,7 +16,7 @@ public class TradingAction extends Action {
      * constructor for which lord of cinders will be traded with
      * @param boss
      */
-    public TradingAction(Yhorm boss) {
+    public TradingAction(Actor boss) {
         this.boss = boss;
     }
 
@@ -27,6 +28,13 @@ public class TradingAction extends Action {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
+        Player player = (Player) actor;
+        for ( Item i : player.getInventory(){
+            if (i == boss.drop()){
+                SwapWeaponAction w = new SwapWeaponAction( Item
+
+
+        }
         return null; /* unable to progress cos lord of cinder classes not implemented*/
     }
 

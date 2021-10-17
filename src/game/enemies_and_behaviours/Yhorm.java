@@ -101,6 +101,21 @@ public class Yhorm extends Actor implements Soul {
     }
 
     /**
+     * returns what the drop for the Yhorm is
+     * @return the item that yhorm drops once defeated
+     */
+    public Item drop(){return new CinderOfYhorm();}
+
+    /**
+     * gets Yhorm's weapon
+     * @return yhorm's weapon
+     */
+    @Override
+    public Weapon getWeapon() {
+        return new Machete(90);
+    }
+
+    /**
      *make it can be attacked by player
      * @param otherActor the Actor that might be performing attack
      * @param direction  String representing the direction of the other Actor
