@@ -18,13 +18,16 @@ public class TradingAction extends Action {
     private char c;
     private char Y;
     private char D;
-
+    private String name;
     /**
      * constructor for which lord of cinders will be traded with
      */
     public TradingAction(char c) {
         super();
         this.c = c;
+        System.out.println(c);
+        if ( c == 'Y'){ name = "Yhorm the Giant";}
+        if ( c == 'D'){ name = "Alderich the Devourer";}
     }
 
     /**
@@ -37,13 +40,13 @@ public class TradingAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         Player player = (Player) actor;
-        if (c == Y) {
+        if (this.c == 'Y') {
             if (player.getInventory().contains(cinderOfYhorm)) {
                 SwapWeaponAction w = new SwapWeaponAction(new Machete(60));
                 return "Cinder of " + "Yhorm" + " traded successfully, " + w.execute(actor, map);
             }
         }
-        if (c == D) {
+        if (this.c == 'D') {
             if (player.getInventory().contains(cinderOfDevourer)) {
                 SwapWeaponAction w = new SwapWeaponAction(new Longbow());
                 return "Cinder of " + "Devourer" + " traded successfully, " + w.execute(actor, map);
@@ -61,9 +64,6 @@ public class TradingAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        if (c == Y) {return "Unkindled trades Cinder of Yhorm the Giant";}
-        if (c == D) {return "Unkindled trades Cinder of Aldrich the Devourer";}
-        return "Unkindled trades Cinder of Lord";
-    }
+        return "Unkindled trades Cinder of "+name;}
 }
 
