@@ -16,7 +16,7 @@ public class TradingAction extends Action {
      * constructor for which lord of cinders will be traded with
      * @param boss
      */
-    public TradingAction(Yhorm bossDrop) {
+    public TradingAction(Yhorm boss) {
         this.boss = boss;
         this.weapon = boss.getWeapon();
     }

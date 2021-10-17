@@ -2,12 +2,14 @@ package game.enemies_and_behaviours;
 
 import edu.monash.fit2099.engine.*;
 import game.AttackAction;
+import game.GameWeaponItem;
 import game.Player;
 import game.SwapWeaponAction;
 import game.enums.Status;
 import game.groundNitem.CinderOfDevourer;
 import game.groundNitem.CinderOfYhorm;
 import game.interfaces.Behaviour;
+import game.weapons_and_skills.Longbow;
 import game.weapons_and_skills.Machete;
 
 public class Devourer extends Actor {
@@ -98,4 +100,19 @@ public class Devourer extends Actor {
             map.locationOf(this).addItem(new CinderOfDevourer());
         }
     }
+
+    /**
+     * returns what the drop for the Devourer is
+     * @return the item that Devourer drops once defeated
+     */
+    public Item drop(){return new CinderOfDevourer();}
+
+    /**
+     * gets Devourer's weapon
+     * @return Devourer's weapon
+     */
+    public GameWeaponItem getWeapon() {
+        return new Longbow();
+    }
+
 }
