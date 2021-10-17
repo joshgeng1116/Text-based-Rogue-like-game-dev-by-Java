@@ -1,6 +1,7 @@
 package game;
 
 import edu.monash.fit2099.engine.*;
+import game.Bonfires.AnorLondoBonfire;
 import game.Bonfires.FirelinkShrineBonfire;
 import game.groundNitem.*;
 import game.vendors.Vendor;
@@ -13,11 +14,11 @@ public class EnterAnorLondoAction extends Action {
     public String execute(Actor actor, GameMap AndorLondo) {
         World world = new World(new Display());
 
-        FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Valley(), new Cemetery(), new FogDoor());
+        FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Valley(), new Cemetery(), new FogDoor(), new AnorLondoBonfire());
 
         List<String> map2 = Arrays.asList(
                 "..++++++..+++................=..........++++......+++.................+++.......",
-                "........+++++..............................+++++++.................+++++........",
+                "........+++++...........................A..+++++++.................+++++........",
                 "...........+++.......................................................+++++......",
                 "...........+++++........................................................++......",
                 ".........+++++++++.......................................................+++....",
