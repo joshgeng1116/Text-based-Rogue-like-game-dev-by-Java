@@ -1,10 +1,10 @@
 package game;
 
 import edu.monash.fit2099.engine.*;
-import game.Bonfires.AnorLondoBonfire;
 import game.Bonfires.FirelinkShrineBonfire;
-import game.enemies_and_behaviours.LordOfCinder;
+import game.enemies_and_behaviours.Yhorm;
 import game.enemies_and_behaviours.Skeleton;
+import game.groundNitem.*;
 import game.vendors.Vendor;
 import game.weapons_and_skills.StormRuler;
 
@@ -22,7 +22,7 @@ public class Application {
 
 			World world = new World(new Display());
 
-			FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Valley(),  new FirelinkShrineBonfire(), new Cemetery(), new Vendor());
+			FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Valley(),  new FirelinkShrineBonfire(), new Cemetery(), new Vendor(), new Ambiguous(), new FogDoor());
 
 			List<String> map = Arrays.asList(
 					"..++++++..+++...........................++++......+++.................+++.......",
@@ -39,7 +39,7 @@ public class Application {
 					"...........++.....................#__FB___#.......................+.............",
 					".........+++......................#_______#...........c............++...........",
 					"............+++...................####_####..........................+..........",
-					"..............+.......c..............................................++.........",
+					"..............+.......c..............?...............................++.........",
 					"..............++.................................................++++++.........",
 					"............+++...................................c...............++++..........",
 					"+..................................................................++...........",
@@ -50,20 +50,20 @@ public class Application {
 					"_..._....._._#.++......................+...................................+....",
 					"...+.__..+...#+++...........................................................+...",
 					"...+.....+._.#.+.....+++++...++..............................................++.",
-					"___.......___#.++++++++++++++.+++.............................................++");
+					"___.......___#.++++++++++++++.+++.................=...........................++");
 			GameMap gameMap = new GameMap(groundFactory, map);
 			world.addGameMap(gameMap);
 
-			Actor player = new Player("Unkindled (Player)", '@', 100);
+			Actor player = new Player("Unkindled (Player)", '@', 1000);
 			world.addPlayer(player, gameMap.at(38, 12));
 
 			// Place Yhorm the Giant/boss in the map
-			gameMap.at(6, 25).addActor(new LordOfCinder("Yhorm the Giant", 'Y', 500));
+			gameMap.at(6, 25).addActor(new Yhorm("Yhorm the Giant", 'Y', 500));
 			gameMap.at(7, 25).addItem(new StormRuler());
 
 			Random random = new Random(1);
 
-		// Place a Hollow in the the map
+		// Place a Hollow in the map
 		// Place cemetery
 		for (int i = 0; i < 4; i++) {
 			Skeleton skeleton = new Skeleton("s"+i);

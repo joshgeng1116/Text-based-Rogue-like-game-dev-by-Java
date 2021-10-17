@@ -3,24 +3,27 @@ package game.enemies_and_behaviours;
 import edu.monash.fit2099.engine.*;
 import game.AttackAction;
 import game.Player;
+import game.SwapWeaponAction;
 import game.enums.Status;
+import game.groundNitem.CinderOfYhorm;
 import game.interfaces.Behaviour;
 import game.interfaces.Soul;
 import game.weapons_and_skills.Machete;
 
 
-public class LordOfCinder extends Actor implements Soul {
+public class Yhorm extends Actor implements Soul {
     private Behaviour followPlayer = null;
     private int souls = 5000;
     private boolean lastEmberForm = false;
     private String name;
+    GameMap map;
     /**
      * Constructor.
      */
-    public LordOfCinder(String name, char displayChar, int hitPoints) {
+    public Yhorm(String name, char displayChar, int hitPoints) {
         super(name, displayChar, hitPoints);
         addCapability(Status.HOSTILE_TO_PLAYER);
-        addItemToInventory(new Machete(this));
+        addItemToInventory(new Machete(60));
         this.name = name;
 
     }
@@ -48,10 +51,13 @@ public class LordOfCinder extends Actor implements Soul {
      */
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+        this.map = map;
 
         Location loc = map.locationOf(this);
         if (!lastEmberForm && isEmberForm()) {
             lastEmberForm = true;
+            SwapWeaponAction s = new SwapWeaponAction(new Machete(90));
+            s.execute(this,map);
             return new BurnGroundAction();
         }
 
@@ -90,6 +96,7 @@ public class LordOfCinder extends Actor implements Soul {
         super.hurt(points);
         if(!isConscious()) {
             System.out.println("LORD OF CINDER FALLEN");
+            map.locationOf(this).addItem(new CinderOfYhorm());
         }
     }
 
@@ -102,6 +109,7 @@ public class LordOfCinder extends Actor implements Soul {
      */
     @Override
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
+        this.map = map;
         Actions actions = new Actions();
         if (otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
             actions.add(new AttackAction(this, direction));

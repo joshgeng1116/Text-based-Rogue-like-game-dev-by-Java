@@ -2,11 +2,14 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 import game.Bonfires.Bonfire;
+import game.enemies_and_behaviours.BurnGroundAction;
 import game.enums.Abilities;
 import game.enums.Status;
+import game.groundNitem.TokenOfSoul;
 import game.interfaces.Resettable;
 import game.interfaces.Soul;
 import game.weapons_and_skills.Broadsword;
+import game.weapons_and_skills.Machete;
 import game.weapons_and_skills.StormRuler;
 import game.weapons_and_skills.StormRulerStunAction;
 
@@ -15,9 +18,11 @@ import game.weapons_and_skills.StormRulerStunAction;
  */
 public class Player extends Actor implements Soul, Resettable {
 	private final Menu menu = new Menu();
-	private int souls = 0;
+	private int souls = 5000;
 	private Location lastLocation;
 	private Bonfire bonfires = new Bonfire();
+	private boolean lastEmberForm = false;
+	private char lastBonfire = 'B';
 
 	/**
 	 * Constructor.
@@ -51,6 +56,10 @@ public class Player extends Actor implements Soul, Resettable {
 		return actions;
 	}
 
+	public boolean isEmberForm() {
+		return this.hitPoints * 1.0 / this.maxHitPoints < 0.5;
+	}
+
 	/**
 	 * go through all the available actions in a playTurn
 	 * @param actions    collection of possible Actions for this Actor
@@ -74,6 +83,7 @@ public class Player extends Actor implements Soul, Resettable {
 			System.out.println("YOU DIED!");
 			return new DoNothingAction();
 		}
+
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
 
@@ -100,6 +110,16 @@ public class Player extends Actor implements Soul, Resettable {
 				}
 			}
 		}
+
+		if(getWeapon() instanceof Machete){
+			if(!lastEmberForm && isEmberForm()){
+				lastEmberForm = true;
+				SwapWeaponAction s = new SwapWeaponAction(new Machete(90));
+				s.execute(this,map);
+				actions.add(new BurnGroundAction());
+			}
+		}
+
 		lastLocation = map.locationOf(this);
 
 		// return/print the console menu
@@ -201,6 +221,10 @@ public class Player extends Actor implements Soul, Resettable {
 				resettable.resetInstance();
 			}
 		}
+	}
+
+	public void setLastBonfire(char lastBonfire) {
+		this.lastBonfire = lastBonfire;
 	}
 
 	/**
