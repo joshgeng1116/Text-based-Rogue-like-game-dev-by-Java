@@ -60,20 +60,18 @@ public class Devourer extends Actor {
             return new BurnGroundAction();
         }
 
-        int[] dxlst = new int[]{-1, 1, 0, 0};
-        int[] dylst = new int[]{0, 0, -1, 1};
-        for (int i = 0; i < 4; i++) {
-            int dx = dxlst[i];
-            int dy = dylst[i];
-            int x = loc.x() + dx;
-            int y = loc.y() + dy;
-            if (map.getXRange().contains(x) && map.getYRange().contains(y)) {
-                Location cell = map.at(x, y);
-                if (cell.getActor() instanceof Player) {
-                    if (followPlayer == null) {
-                        followPlayer = new FollowBehaviour(cell.getActor());
+        for (int dx = -3; dx <= 3; dx++) {
+            for (int dy = -3; dy <= 3; dy++) {
+                int x = loc.x() + dx;
+                int y = loc.y() + dy;
+                if (map.getXRange().contains(x) && map.getYRange().contains(y)) {
+                    Location cell = map.at(x, y);
+                    if (cell.getActor() instanceof Player) {
+                        if (followPlayer == null) {
+                            followPlayer = new FollowBehaviour(cell.getActor());
+                        }
+                        return new AttackAction(cell.getActor(), "");
                     }
-                    return new AttackAction(cell.getActor(), "");
                 }
             }
         }

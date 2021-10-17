@@ -33,7 +33,7 @@ public class AnorLondoBonfire extends Ground {
             actions.add(new BonfireResetAction("Anor Londo Bonfire"));
             for (Ground i : player.getBonfires().getBonfiresList()) {
                 if (i != this) {
-                    actions.add(new TeleportAction(i)); /* need teleportation implementation from Tawana to be finished first*/
+                    //actions.add(new TeleportAction(i)); /* need teleportation implementation from Tawana to be finished first*/
                 }
             }
             return actions;

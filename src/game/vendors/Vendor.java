@@ -35,8 +35,7 @@ public class Vendor extends Ground {
         actions.add(new PurchaseAction(new GiantAxe()));
         actions.add(new PurchaseAction(new StormRuler()));
         actions.add(new VendorBuyHPAction());
-        actions.add(new TradingAction(new Devourer()));  /* need parameters for Devourer()*/
-        actions.add(new TradingAction(new Yhorm("Yhorm the Giant", 'Y', 500)));
+        actions.add(new TradingAction());  /* need parameters for Devourer()*/
         return actions;
     }
 }

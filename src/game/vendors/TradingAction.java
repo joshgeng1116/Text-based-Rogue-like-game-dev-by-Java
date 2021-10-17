@@ -5,20 +5,24 @@ import game.GameWeaponItem;
 import game.Player;
 import game.SwapWeaponAction;
 import game.enemies_and_behaviours.Yhorm;
+import game.groundNitem.CinderOfDevourer;
+import game.groundNitem.CinderOfYhorm;
+import game.weapons_and_skills.Longbow;
+import game.weapons_and_skills.Machete;
 
 /**
  * classs used for trading lord of cinders
  */
 public class TradingAction extends Action {
-    Yhorm boss;
-    GameWeaponItem weapon;
+
+    private CinderOfYhorm cinderOfYhorm;
+    private CinderOfDevourer cinderOfDevourer;
+
     /**
      * constructor for which lord of cinders will be traded with
-     * @param boss
      */
-    public TradingAction(Yhorm boss) {
-        this.boss = boss;
-        this.weapon = boss.getWeapon();
+    public TradingAction() {
+        super();
     }
 
     /**
@@ -30,11 +34,14 @@ public class TradingAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         Player player = (Player) actor;
-        if (player.getInventory().contains(boss.drop())){
-            SwapWeaponAction w = new SwapWeaponAction(boss.getWeapon());
-            return "Cinder of "+boss.name()+" traded successfully, "+ w.execute(actor, map);}
+        if (player.getInventory().contains(cinderOfYhorm)){
+            SwapWeaponAction w = new SwapWeaponAction(new Machete(60));
+            return "Cinder of "+"Yhorm"+" traded successfully, "+ w.execute(actor, map);}
+        else if (player.getInventory().contains(cinderOfDevourer)){
+            SwapWeaponAction w = new SwapWeaponAction(new Longbow());
+            return "Cinder of "+"Devouer"+" traded successfully, "+ w.execute(actor, map);}
         else{
-            return "Cinder of "+boss.name()+"does not exist in Inventory";
+            return "Cinder of does not exist in Inventory";
         }}
 
 
@@ -45,6 +52,7 @@ public class TradingAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return "Unkindled trades Cinder of "+ boss.name();}/* Unkindled trades Cinder of Aldrich the Devourer/Yhorm the Giant*/
+        return "Unkindled trades Cinder of Lord";
+    }/* Unkindled trades Cinder of Aldrich the Devourer/Yhorm the Giant*/
 
 }
