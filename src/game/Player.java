@@ -24,6 +24,7 @@ public class Player extends Actor implements Soul, Resettable {
 	private boolean lastEmberForm = false;
 	private char lastBonfire = 'B';
 	private Location resetPoint;
+	private MapManager mapManager = new MapManager();
 
 	/**
 	 * Constructor.
@@ -231,6 +232,9 @@ public class Player extends Actor implements Soul, Resettable {
 
 	public void setResetPoint(){
 		resetPoint = lastLocation;
+	}
+	public MapManager getMapManager(){
+		return mapManager;
 	}
 
 
