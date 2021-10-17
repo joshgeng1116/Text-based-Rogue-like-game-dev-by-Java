@@ -23,17 +23,20 @@ public class AnorLondoBonfire extends Ground {
      */
     @Override
     public Actions allowableActions(Actor actor, Location location, String direction) {
-        Actions actions =new Actions();
+        Actions actions = new Actions();
         Player player = (Player) actor;
-        if (!isBonfireLit){
-            actions.add( new LightBonfireAction());
+        if (!isBonfireLit) {
+            actions.add(new LightBonfireAction());
             isBonfireLit = true;
-            player.getBonfires().addBonfire(this);}
-        else{actions.add( new BonfireResetAction("Anor Londo Bonfire"));
-            for ( Ground i : player.getBonfires().getBonfiresList()){
-                if (i!=this){
-                /*actions.add( new TeleportAction(i) ); /*implement a for loop, looping all the other shrines that r lit
-            and possible to teleport to*/}
-            }}
-        return actions;}
+            player.getBonfires().addBonfire(this);
+        } else {
+            actions.add(new BonfireResetAction("Anor Londo Bonfire"));
+            for (Ground i : player.getBonfires().getBonfiresList()) {
+                if (i != this) {
+                    actions.add(new TeleportAction(i)); /* need teleportation implementation from Tawana to be finished first*/
+                }
+            }
+            return actions;
+        }
+    }
 }
