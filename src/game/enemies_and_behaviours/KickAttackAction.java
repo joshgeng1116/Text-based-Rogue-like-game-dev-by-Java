@@ -13,12 +13,22 @@ public class KickAttackAction extends Action {
      */
     protected String direction;
 
-
+    /**
+     *
+     * @param target attack target
+     * @param direction target direction
+     */
     public KickAttackAction(Actor target, String direction){
         this.target = target;
         this.direction = direction;
     }
 
+    /**
+     * change the description of attack action
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * @return
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
         int damage = 55;
