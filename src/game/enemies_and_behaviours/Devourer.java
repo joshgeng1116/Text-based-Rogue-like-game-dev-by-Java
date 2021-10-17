@@ -22,7 +22,7 @@ public class Devourer extends Actor {
     public Devourer(String name, char displayChar, int hitPoints) {
         super(name, displayChar, hitPoints);
         addCapability(Status.HOSTILE_TO_PLAYER);
-        addItemToInventory(new Machete(60));
+        addItemToInventory(new Longbow());
         this.name = name;
 
     }
