@@ -14,6 +14,13 @@ public class Ambiguous extends Ground{
         super('?');
     }
 
+    /**
+     * when player near it add Open the chest action to actions menu
+     * @param actor the Actor acting
+     * @param location the current Location
+     * @param direction the direction of the Ground from the Actor
+     * @return
+     */
     @Override
     public Actions allowableActions(Actor actor, Location location, String direction){
         Actions actions =new Actions();

@@ -68,7 +68,7 @@ public class Mimi extends Actor implements Soul{
                 if (map.getXRange().contains(x) && map.getYRange().contains(y)) {
                     Location cell = map.at(x, y);
 
-                    //check if the player near Undead, check the followPlayer, if is null make it follow the player then attack player
+                    //check if the player near Mimi, check the followPlayer, if is null make it follow the player then attack using kick attack action
                     if (cell.getActor() instanceof Player) {
                         if (followPlayer == null) {
                             followPlayer = new FollowBehaviour(cell.getActor());

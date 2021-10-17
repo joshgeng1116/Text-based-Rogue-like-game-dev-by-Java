@@ -34,7 +34,7 @@ public class Player extends Actor implements Soul, Resettable {
 		super(name, displayChar, hitPoints);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addCapability(Abilities.REST);
-		this.addItemToInventory(new Longbow());
+		this.addItemToInventory(new Broadsword());
 		this.addItemToInventory(new EstusFlask());
 		ResetManager.getInstance().appendResetInstance(this);
 	}

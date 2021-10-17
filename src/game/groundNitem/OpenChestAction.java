@@ -12,11 +12,21 @@ public class OpenChestAction extends Action {
     Location location;
     Ground dirt = new Dirt();
 
+    /**
+     *
+     * @param location
+     */
     public OpenChestAction(Location location){
         super();
         this.location = location;
     }
 
+    /**
+     * when it execute, 50% add an actor Mimi, 50% add item token of soul on it location, token of soul have different souls
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * @return
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
         if (random.nextInt(2) == 0) {
