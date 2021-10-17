@@ -28,15 +28,14 @@ public class AnorLondoBonfire extends Ground {
         if (!isBonfireLit) {
             actions.add(new LightBonfireAction());
             isBonfireLit = true;
-            player.getBonfires().addBonfire(this);
-        } else {
+            player.getBonfires().addBonfire(this);}
+        else {
             actions.add(new BonfireResetAction("Anor Londo Bonfire"));
             for (Ground i : player.getBonfires().getBonfiresList()) {
                 if (i != this) {
                     //actions.add(new TeleportAction(i)); /* need teleportation implementation from Tawana to be finished first*/
                 }
-            }
-            return actions;
-        }
+            }}
+        return actions;
     }
 }
