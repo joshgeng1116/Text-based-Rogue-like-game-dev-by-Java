@@ -11,13 +11,14 @@ import game.enemies_and_behaviours.Yhorm;
  */
 public class TradingAction extends Action {
     Yhorm boss;
-
+    GameWeaponItem weapon;
     /**
      * constructor for which lord of cinders will be traded with
      * @param boss
      */
-    public TradingAction(Actor boss) {
+    public TradingAction(Yhorm bossDrop) {
         this.boss = boss;
+        this.weapon = boss.getWeapon();
     }
 
     /**
@@ -29,14 +30,13 @@ public class TradingAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         Player player = (Player) actor;
-        for ( Item i : player.getInventory(){
-            if (i == boss.drop()){
-                SwapWeaponAction w = new SwapWeaponAction( Item
+        if (player.getInventory().contains(boss.drop())){
+            SwapWeaponAction w = new SwapWeaponAction(boss.getWeapon());
+            return "Cinder of "+boss.name()+" traded successfully, "+ w.execute(actor, map);}
+        else{
+            return "Cinder of "+boss.name()+"does not exist in Inventory";
+        }}
 
-
-        }
-        return null; /* unable to progress cos lord of cinder classes not implemented*/
-    }
 
     /**
      * menu description that appears to player in console

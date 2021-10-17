@@ -2,6 +2,7 @@ package game.enemies_and_behaviours;
 
 import edu.monash.fit2099.engine.*;
 import game.AttackAction;
+import game.GameWeaponItem;
 import game.Player;
 import game.SwapWeaponAction;
 import game.enums.Status;
@@ -110,8 +111,7 @@ public class Yhorm extends Actor implements Soul {
      * gets Yhorm's weapon
      * @return yhorm's weapon
      */
-    @Override
-    public Weapon getWeapon() {
+    public GameWeaponItem getWeapon() {
         return new Machete(90);
     }
 

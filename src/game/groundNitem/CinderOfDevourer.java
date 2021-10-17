@@ -3,6 +3,7 @@ package game.groundNitem;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import game.Player;
+import game.enemies_and_behaviours.Devourer;
 
 public class CinderOfDevourer extends Item {
     /***
@@ -21,4 +22,5 @@ public class CinderOfDevourer extends Item {
         }
         super.tick(location);
     }
-}
+    }
+

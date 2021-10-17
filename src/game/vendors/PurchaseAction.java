@@ -35,7 +35,7 @@ public class PurchaseAction extends Action{
         if (player.getSouls() >= weaponItem.cost()){
             player.subtractSouls(weaponItem.cost());
             SwapWeaponAction w = new SwapWeaponAction(weaponItem);
-            return "Broadsword brought successfully, "+ w.execute(actor, map);}
+            return weaponItem.weaponName()+" brought successfully, "+ w.execute(actor, map);}
         else{
             return "Not enough Souls to purchase "+ weaponItem.weaponName();
         }}

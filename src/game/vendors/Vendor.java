@@ -4,6 +4,8 @@ import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
+import game.enemies_and_behaviours.Devourer;
+import game.enemies_and_behaviours.Yhorm;
 import game.weapons_and_skills.Broadsword;
 import game.weapons_and_skills.GiantAxe;
 import game.weapons_and_skills.StormRuler;
@@ -33,8 +35,8 @@ public class Vendor extends Ground {
         actions.add(new PurchaseAction(new GiantAxe()));
         actions.add(new PurchaseAction(new StormRuler()));
         actions.add(new VendorBuyHPAction());
-        /*actions.add(new TradingAction(new CinderOfAldrich()));    Cinder of bosses have not been implemented yet
-        actions.add(new TradingAction(new CinderOfYhorm()));*/
+        actions.add(new TradingAction(new Devourer()));
+        actions.add(new TradingAction(new Yhorm("Yhorm the Giant", 'Y', 500));
         return actions;
     }
 }
