@@ -15,6 +15,14 @@ import edu.monash.fit2099.engine.Location;
             super('=');
         }
 
+        /**
+         * Provides actor with actions they can take when nearby
+         * @param actor the Actor acting
+         * @param location the current Location
+         * @param direction the direction of the Ground from the Actor
+         * @return a list of actions
+         */
+
         @Override
         public Actions allowableActions(Actor actor, Location location, String direction) {
 

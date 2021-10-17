@@ -241,9 +241,17 @@ public class Player extends Actor implements Soul, Resettable {
 
 	}
 
+	/**
+	 * Updates the location that player will reset to
+	 */
 	public void setResetPoint(){
 		resetPoint = lastLocation;
 	}
+
+	/**
+	 *
+	 * @return the mapManager of the player class
+	 */
 	public MapManager getMapManager(){
 		return mapManager;
 	}
