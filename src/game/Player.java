@@ -23,6 +23,7 @@ public class Player extends Actor implements Soul, Resettable {
 	private Bonfire bonfires = new Bonfire();
 	private boolean lastEmberForm = false;
 	private char lastBonfire = 'B';
+	private Location resetPoint;
 
 	/**
 	 * Constructor.
@@ -79,7 +80,7 @@ public class Player extends Actor implements Soul, Resettable {
 			}
 			resetInstance();
 			map.removeActor(player);
-			map.at(38, 12).addActor(player);
+			resetPoint.addActor(player);
 			System.out.println("YOU DIED!");
 			return new DoNothingAction();
 		}
@@ -221,11 +222,17 @@ public class Player extends Actor implements Soul, Resettable {
 				resettable.resetInstance();
 			}
 		}
+
 	}
 
 	public void setLastBonfire(char lastBonfire) {
 		this.lastBonfire = lastBonfire;
 	}
+
+	public void setResetPoint(){
+		resetPoint = lastLocation;
+	}
+
 
 	/**
 	 * A  method to clean up the list of instances in the ResetManager class
