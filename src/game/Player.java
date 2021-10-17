@@ -3,15 +3,13 @@ package game;
 import edu.monash.fit2099.engine.*;
 import game.Bonfires.Bonfire;
 import game.enemies_and_behaviours.BurnGroundAction;
+import game.enemies_and_behaviours.FollowBehaviour;
 import game.enums.Abilities;
 import game.enums.Status;
 import game.groundNitem.TokenOfSoul;
 import game.interfaces.Resettable;
 import game.interfaces.Soul;
-import game.weapons_and_skills.Broadsword;
-import game.weapons_and_skills.Machete;
-import game.weapons_and_skills.StormRuler;
-import game.weapons_and_skills.StormRulerStunAction;
+import game.weapons_and_skills.*;
 
 /**
  * Class representing the Player.
@@ -22,7 +20,6 @@ public class Player extends Actor implements Soul, Resettable {
 	private Location lastLocation;
 	private Bonfire bonfires = new Bonfire();
 	private boolean lastEmberForm = false;
-	private char lastBonfire = 'B';
 	private Location resetPoint;
 	private MapManager mapManager = new MapManager();
 
@@ -37,7 +34,7 @@ public class Player extends Actor implements Soul, Resettable {
 		super(name, displayChar, hitPoints);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addCapability(Abilities.REST);
-		this.addItemToInventory(new Broadsword());
+		this.addItemToInventory(new Longbow());
 		this.addItemToInventory(new EstusFlask());
 		ResetManager.getInstance().appendResetInstance(this);
 	}
@@ -119,6 +116,24 @@ public class Player extends Actor implements Soul, Resettable {
 				SwapWeaponAction s = new SwapWeaponAction(new Machete(90));
 				s.execute(this,map);
 				actions.add(new BurnGroundAction());
+			}
+		}
+
+		if(getWeapon() instanceof Longbow){
+			Location loc = map.locationOf(this);
+			for (int dx = -3; dx <= 3; dx++) {
+				for (int dy = -3; dy <= 3; dy++) {
+					int x = loc.x() + dx;
+					int y = loc.y() + dy;
+					if (map.getXRange().contains(x) && map.getYRange().contains(y)) {
+						Location cell = map.at(x, y);
+						if(cell.getActor() != null){
+							if (!(cell.getActor() instanceof Player)) {
+								actions.add( new AttackAction(cell.getActor(), "x: "+cell.x()+", y: "+cell.y()));
+							}
+						}
+					}
+				}
 			}
 		}
 
@@ -224,10 +239,6 @@ public class Player extends Actor implements Soul, Resettable {
 			}
 		}
 
-	}
-
-	public void setLastBonfire(char lastBonfire) {
-		this.lastBonfire = lastBonfire;
 	}
 
 	public void setResetPoint(){

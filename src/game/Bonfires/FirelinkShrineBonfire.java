@@ -14,6 +14,7 @@ import game.Player;
  * exactly in the middle.
  */
 public class FirelinkShrineBonfire extends Ground {
+    private String name = "Firelink Shrine";
     /**
      * Constructor of FireLink shrine Bonfire.
      *
