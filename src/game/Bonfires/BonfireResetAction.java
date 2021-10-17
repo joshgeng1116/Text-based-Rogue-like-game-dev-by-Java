@@ -40,6 +40,11 @@ public class BonfireResetAction extends Action {
                 estusFlask.resetInstance();
             }
         }
+        if(bonfireName.equals("Firelink Shrine")){
+            player.setLastBonfire('B');
+        }else if(bonfireName.equals("Anor Londo Bonfire")){
+            player.setLastBonfire('A');
+        }
         return "All recovered";
     }
 

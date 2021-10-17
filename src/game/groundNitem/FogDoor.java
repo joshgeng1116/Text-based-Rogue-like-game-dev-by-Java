@@ -4,7 +4,8 @@ import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
-import game.EnterAndorLondoAction;
+import game.EnterAnorLondoAction;
+import game.EnterProfaneCapitalAction;
 
 public class FogDoor extends Ground {
     /**
@@ -18,7 +19,8 @@ public class FogDoor extends Ground {
     @Override
     public Actions allowableActions(Actor actor, Location location, String direction) {
         Actions actions =  new Actions();
-        actions.add(new EnterAndorLondoAction());
+        actions.add(new EnterAnorLondoAction());
+        actions.add(new EnterProfaneCapitalAction());
         return actions;
     }
 }

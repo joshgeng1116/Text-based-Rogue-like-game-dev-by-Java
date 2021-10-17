@@ -8,7 +8,7 @@ import game.vendors.Vendor;
 import java.util.Arrays;
 import java.util.List;
 
-public class EnterAndorLondoAction extends Action {
+public class EnterAnorLondoAction extends Action {
     @Override
     public String execute(Actor actor, GameMap AndorLondo) {
         World world = new World(new Display());

@@ -22,6 +22,7 @@ public class Player extends Actor implements Soul, Resettable {
 	private Location lastLocation;
 	private Bonfire bonfires = new Bonfire();
 	private boolean lastEmberForm = false;
+	private char lastBonfire = 'B';
 
 	/**
 	 * Constructor.
@@ -220,6 +221,10 @@ public class Player extends Actor implements Soul, Resettable {
 				resettable.resetInstance();
 			}
 		}
+	}
+
+	public void setLastBonfire(char lastBonfire) {
+		this.lastBonfire = lastBonfire;
 	}
 
 	/**
